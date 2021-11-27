@@ -1,1 +1,15 @@
-<p>receipt works!</p>
+<section>
+  <mat-card class="mat-whiteframe-2dp">
+    <mat-card-title-group>
+      <mat-card-title>
+        <a href="javascript:void(0);">
+          <span>{{ receipt.name }}</span>
+        </a>
+      </mat-card-title>
+      <mat-card-subtitle>{{ receipt.description }}</mat-card-subtitle>
+      <mat-card-subtitle class="contact-info">
+        <a href="Autheur:{{ receipt.firstname }} {{ receipt.lastname }}&lt;{{ receipt.pseudo }}&gt;" class="truncate"></a>
+      </mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card>
+</section>

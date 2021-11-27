@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {RECEIPES} from "../_static/_receipes";
+import {ReceiptType} from "../receipt/receipt.type";
 
 @Component({
   selector: 'app-cookbook',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cookbook.component.css']
 })
 export class CookbookComponent implements OnInit {
-
-  constructor() { }
+  //private _cookbook: ReceiptType[];
+  constructor() {
+    //this._cookbook=[];
+  }
 
   ngOnInit(): void {
   }

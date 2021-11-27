@@ -8,6 +8,10 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
+import {MatIconModule} from "@angular/material/icon";
+import {HttpClientModule} from "@angular/common/http";
+import {MatButtonModule} from "@angular/material/button";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import { CookbookComponent } from './cookbook/cookbook.component';
     ReceiptComponent,
     CookbookComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatListModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatIconModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
