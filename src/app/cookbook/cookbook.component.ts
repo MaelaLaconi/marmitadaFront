@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {environment} from "../../environments/environment";
-import {RecipeType} from "../recipe/recipe.type";
-import {HttpClient} from "@angular/common/http";
+import {Recipe} from "../recipe/recipe.type";
 import {CookbookService} from "../shared/services/cookbook.service";
 
 
@@ -11,7 +9,7 @@ import {CookbookService} from "../shared/services/cookbook.service";
   styleUrls: ['./cookbook.component.css']
 })
 export class CookbookComponent implements OnInit {
-  private _cookbook: RecipeType[];
+  private _cookbook: Recipe[];
   private readonly _backendURL: any;
 
   constructor(private _cookbookService: CookbookService) {
@@ -22,10 +20,10 @@ export class CookbookComponent implements OnInit {
   ngOnInit(): void {
     this._cookbookService
       .fetch()
-      .subscribe({ next: (recipe: RecipeType[]) => this._cookbook = recipe });
+      .subscribe({ next: (recipe: Recipe[]) => this._cookbook = recipe });
   }
 
-  get cookbook(): RecipeType[] {
+  get cookbook(): Recipe[] {
     return this._cookbook;
   }
 }

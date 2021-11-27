@@ -1,4 +1,4 @@
-export type RecipeType = {
+export type Recipe = {
   // Nom du plat
   name: string;
   // Description du plat

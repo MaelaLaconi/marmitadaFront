@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {RecipeType} from "../../recipe/recipe.type";
-import {HttpClient} from "@angular/common/http";
+import {Recipe} from "../../recipe/recipe.type";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {defaultIfEmpty, filter} from "rxjs/operators";
@@ -11,8 +11,7 @@ import {defaultIfEmpty, filter} from "rxjs/operators";
 export class CookbookService {
 
   private readonly _backendURL: any;
-  private readonly _defautltRecipe: RecipeType;
-
+  private readonly _defautltRecipe: Recipe;
 
   constructor(private _http: HttpClient) {
     this._defautltRecipe={
@@ -54,14 +53,16 @@ export class CookbookService {
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
   }
 
+
+
   /**
    * Function to return list of recipe
    */
-  fetch(): Observable<RecipeType[]>  {
-    return this._http.get<RecipeType[]>(this._backendURL.allPeople)
+  fetch(): Observable<Recipe[]>  {
+    return this._http.get<Recipe[]>(this._backendURL.allRecipe)
       .pipe(
-        filter((recipe: RecipeType[]) => !!recipe),
-        defaultIfEmpty([])
+        filter((recipes: Recipe[]) => !!recipes),
+        defaultIfEmpty([] as Recipe[])
       );
   }
 
