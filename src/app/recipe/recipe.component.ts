@@ -7,16 +7,16 @@ import {RECIPES} from "../_static/_recipes";
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
-  private _receipt: any;
+  private _recipe: any;
 
   constructor() {
-    this._receipt = RECIPES[0];
+    this._recipe = RECIPES[0];
   }
 
   ngOnInit(): void {
   }
 
-  get receipt(): any {
-    return this._receipt;
+  get recipe(): any {
+    return this._recipe;
   }
 }
