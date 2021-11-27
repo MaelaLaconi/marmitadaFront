@@ -6,14 +6,14 @@ import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ReceiptComponent } from './receipt/receipt.component';
+import { RecipeComponent } from './recipe/recipe.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    ReceiptComponent,
+    RecipeComponent,
     CookbookComponent
   ],
   imports: [

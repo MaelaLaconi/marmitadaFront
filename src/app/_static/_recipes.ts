@@ -1,4 +1,4 @@
-export const RECEIPES = [
+export const RECIPES = [
   {
     name: 'tadaramisu',
     description: 'Un dessert italien à base de mascarponne, de biscuit boudoire, de sucre et de café',
