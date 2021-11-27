@@ -5,8 +5,8 @@ export const environment = {
     host: 'localhost',
     port: '3000',
     endpoints: {
-      allReceipt: '/recipe',
-      randomReceipt: '/recipe/random'
+      allRecipe: '/recipe',
+      randomRecipe: '/recipe/random'
     }
   }
 };

@@ -10,6 +10,19 @@
       <mat-card-subtitle class="contact-info">
         <a href="Autheur:{{ recipe.firstname }} {{ recipe.lastname }}&lt;{{ recipe.pseudo }}&gt;" class="truncate"></a>
       </mat-card-subtitle>
+
+
     </mat-card-title-group>
+    <mat-list>
+      <h3 mat-subheader>Liste des ingrédients</h3>
+
+      <mat-list-item *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
+    </mat-list>
+
+    <mat-list>
+      <h3 mat-subheader>Steps</h3>
+
+      <mat-list-item *ngFor="let step of recipe.steps;let indexOfelement=index;"> Step {{indexOfelement}} : {{step}} </mat-list-item>
+    </mat-list>
   </mat-card>
 </section>
