@@ -3,7 +3,7 @@ import {Recipe} from "../../recipe/recipe.type";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {defaultIfEmpty, filter} from "rxjs/operators";
+import {defaultIfEmpty, filter, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +64,47 @@ export class CookbookService {
         filter((recipes: Recipe[]) => !!recipes),
         defaultIfEmpty([] as Recipe[])
       );
+  }
+
+  /**
+   * Function to return one recipe for current id
+   */
+  fetchOne(id: string): Observable<Recipe> {
+    return this._http.get<Recipe>(this._backendURL.oneRecipe.replace(':id', id));
+  }
+
+  get defautltRecipe(): Recipe {
+    return this._defautltRecipe;
+  }
+
+  /**
+   * Function to create a new recipe
+   */
+  create(recipe: Recipe): Observable<any> {
+    return this._http.post<Recipe>(this._backendURL.allRecipe, recipe, this._options());
+  }
+
+  /**
+   * Function to update one recipe
+   */
+  update(id: string, recipe: Recipe): Observable<any> {
+    return this._http.put<Recipe>(this._backendURL.oneRecipe.replace(':id', id), recipe, this._options());
+  }
+
+  /**
+   * Function to delete one recipe for current id
+   */
+  delete(id: string): Observable<string> {
+    return this._http.delete(this._backendURL.oneRecipe.replace(':id', id))
+      .pipe(
+        map(() => id)
+      );
+  }
+  /**
+   * Function to return request options
+   */
+  private _options(headerList: object = {}): any {
+    return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }
 
 }

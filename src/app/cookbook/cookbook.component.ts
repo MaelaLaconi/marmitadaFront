@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Recipe} from "../recipe/recipe.type";
 import {CookbookService} from "../shared/services/cookbook.service";
-
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogComponent } from '../shared/dialog/dialog.component';
+import {filter, map, mergeMap} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-cookbook',
@@ -12,9 +15,15 @@ export class CookbookComponent implements OnInit {
   private _cookbook: Recipe[];
   private readonly _backendURL: any;
 
-  constructor(private _cookbookService: CookbookService) {
+  // private property to store dialogStatus value
+  private _dialogStatus: string;
+  // private property to store dialog reference
+  private _cookbookDialog: MatDialogRef<DialogComponent, Recipe> | undefined;
+
+  constructor(private _cookbookService: CookbookService/*, private _dialog: MatDialog*/) {
     this._cookbook=[];
     this._backendURL=[];
+    this._dialogStatus = 'inactive';
     }
 
   ngOnInit(): void {
@@ -25,6 +34,53 @@ export class CookbookComponent implements OnInit {
 
   get cookbook(): Recipe[] {
     return this._cookbook;
+  }
+
+
+  /**
+   * Returns private property _dialogStatus
+   */
+  get dialogStatus(): string {
+    return this._dialogStatus;
+  }
+
+  /*
+  showDialog(): void {
+    // set dialog status
+    this._dialogStatus = 'active';
+
+    // open modal
+    this._cookbookDialog = this._dialog.open(DialogComponent, {
+      width: '500px',
+      disableClose: true
+    });
+
+    // subscribe to afterClosed observable to set dialog status and do process
+    this._cookbookDialog.afterClosed()
+      .pipe(
+        filter((recipe: Recipe | undefined) => !!recipe),
+        map((recipe: Recipe | undefined) => {
+          // delete obsolete attributes in original object which are not required in the API
+          /*delete person?.id;
+          delete person?.photo;
+*/
+  /*
+          return recipe;
+        }),
+        mergeMap((recipe: Recipe | undefined) => this._add(recipe))
+      )
+      .subscribe({
+        next: (recipe: Recipe) => this._cookbook = this._cookbook.concat(recipe),
+        error: () => this._dialogStatus = 'inactive',
+        complete: () => this._dialogStatus = 'inactive'
+      });
+  }
+*/
+  /**
+   * Add new person
+   */
+  private _add(recipe: Recipe | undefined): Observable<Recipe> {
+    return this._cookbookService.create(recipe as Recipe);
   }
 }
 

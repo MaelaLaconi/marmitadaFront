@@ -11,7 +11,9 @@ export const environment = {
     port: '3000',
     endpoints: {
       allRecipe: '/recipes',
-      randomRecipe: '/recipes/random'
+      randomRecipe: '/recipes/random',
+      oneRecipe: '/recipes/:id'
+
     }
   }
 };

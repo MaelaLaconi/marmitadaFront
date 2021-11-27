@@ -12,13 +12,19 @@ import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { FormComponent } from './shared/form/form.component';
+import { FicheComponent } from './shared/fiche/fiche.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     RecipeComponent,
-    CookbookComponent
+    CookbookComponent,
+    DialogComponent,
+    FormComponent,
+    FicheComponent
   ],
     imports: [
         BrowserModule,
