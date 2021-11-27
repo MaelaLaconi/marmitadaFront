@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RECEIPES} from "../_static/_receipes";
-import {ReceiptType} from "../receipt/receipt.type";
+
 
 @Component({
   selector: 'app-cookbook',
