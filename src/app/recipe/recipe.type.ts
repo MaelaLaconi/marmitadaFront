@@ -19,4 +19,4 @@ export type RecipeType = {
   preparationTime: number;
   // Temps de cuisson en minute
   cookingTime: number;
-}
+};
