@@ -1,12 +1,16 @@
 <p>cookbook works!</p>
 <section>
   <mat-card class="mat-whiteframe-2dp" >
-    <mat-card-title-group>
-      <mat-card-title>
+    <mat-card-title-group *ngFor="let recipe of cookbook">
+      <mat-card-title >
         <a href="javascript:void(0);">
-          <span>{{ cookbook[0].name }}</span>
+          <span>{{ recipe.name }}</span>
         </a>
       </mat-card-title>
+
+      <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
+      <mat-card-subtitle>Auteur : {{recipe.author.pseudo}}</mat-card-subtitle>
+      <mat-card-subtitle>Temps de préparation : {{recipe.preparationTime}}</mat-card-subtitle>
 
     </mat-card-title-group>
   </mat-card>
