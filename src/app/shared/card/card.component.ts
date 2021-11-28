@@ -1,21 +1,20 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Recipe} from "../../recipe/recipe.type";
-import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-fiche',
+  selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class FicheComponent implements OnInit {
-
+export class CardComponent implements OnInit {
+  //private property to store recipe value
   private _recipe: Recipe;
-  private readonly _delete$: EventEmitter<Recipe>;
 
-
-  constructor(private _router: Router) {
+  constructor() {
     this._recipe = {} as Recipe;
-    this._delete$ = new EventEmitter<Recipe>();
+  }
+
+  ngOnInit(): void {
   }
 
 
@@ -23,20 +22,12 @@ export class FicheComponent implements OnInit {
     return this._recipe;
   }
 
+  /**
+   * Sets private property _recipe
+   */
   @Input()
-  set recipe(recipe:Recipe){
+  set recipe(recipe: Recipe) {
     this._recipe = recipe;
-  }
-
-  @Output('deleteRecipe') get delete$(): EventEmitter<Recipe>{
-    return this._delete$;
-  }
-
-  delete(recipe: Recipe): void{
-    this._delete$.emit(recipe);
-  }
-
-  ngOnInit(): void {
   }
 
 }

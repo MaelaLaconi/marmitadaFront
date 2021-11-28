@@ -1,3 +1,14 @@
+h1 {
+  text-align: center;
+}
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (min-width: 768px) {
   :host(.wide) mat-card,
   :host(.wide) mat-list-item{
@@ -10,7 +21,7 @@ mat-list-item {
   color: rgba(0,0,0,0.87);
   background-color: white;
   margin: 10px;
-  width: 360px;
+  width: 600px;
 }
 
 mat-card:hover {
@@ -137,8 +148,4 @@ img {
   img {
     margin-right: 5px;
   }
-}
-
-.managerLink:hover {
-  cursor: pointer;
 }
