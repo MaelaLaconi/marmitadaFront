@@ -25,5 +25,12 @@
 
       <mat-list-item *ngFor="let step of recipe.steps;let indexOfelement=index;"> Step {{indexOfelement}} : {{step}} </mat-list-item>
     </mat-list>
+    <mat-card-content>
+      <div class="buttons-info">
+        <button mat-button title="Delete" (click)="delete(recipe)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
   </mat-card>
 </section>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Recipe} from "../../recipe/recipe.type";
 
 @Component({
@@ -10,8 +10,13 @@ export class CardComponent implements OnInit {
   //private property to store recipe value
   private _recipe: Recipe;
 
+  // private property to store delete$ value
+  private readonly _delete$: EventEmitter<Recipe>;
+
   constructor() {
     this._recipe = {} as Recipe;
+    this._delete$ = new EventEmitter<Recipe>();
+
   }
 
   ngOnInit(): void {
@@ -28,6 +33,20 @@ export class CardComponent implements OnInit {
   @Input()
   set recipe(recipe: Recipe) {
     this._recipe = recipe;
+  }
+
+  /**
+   * Returns private property _delete$
+   */
+  @Output('deleteRecipe') get delete$(): EventEmitter<Recipe> {
+    return this._delete$;
+  }
+
+  /**
+   * Function to emit event to delete current person
+   */
+  delete(recipe: Recipe): void {
+    this._delete$.emit(recipe);
   }
 
 }

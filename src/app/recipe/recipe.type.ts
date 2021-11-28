@@ -1,4 +1,6 @@
 export type Recipe = {
+  //id
+  id?: string;
   // Nom du plat
   name: string;
   // Description du plat

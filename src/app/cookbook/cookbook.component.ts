@@ -36,6 +36,15 @@ export class CookbookComponent implements OnInit {
     return this._cookbook;
   }
 
+  /**
+   * Function to delete one recipe
+   */
+  delete(recipe: Recipe): void {
+    this._cookbookService
+      .delete(recipe.id as string)
+      .subscribe((id: string) => this._cookbook = this._cookbook.filter((r: Recipe) => r.id !== id));
+  }
+
 
   get view(): string {
     return this._view;

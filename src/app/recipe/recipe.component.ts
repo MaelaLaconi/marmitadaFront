@@ -14,6 +14,7 @@ export class RecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   get recipe(): any {
