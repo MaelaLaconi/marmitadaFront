@@ -14,10 +14,11 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { FormComponent } from './shared/form/form.component';
-import { FicheComponent } from './shared/card/card.component';
+import { CardComponent } from './shared/card/card.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
+import { UpdateComponent } from './update/update.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {FormsModule} from "@angular/forms";
     CookbookComponent,
     DialogComponent,
     FormComponent,
-    FicheComponent
+    UpdateComponent,
+    CardComponent
   ],
     imports: [
         BrowserModule,
