@@ -17,7 +17,7 @@ import { FormComponent } from './shared/form/form.component';
 import { CardComponent } from './shared/card/card.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UpdateComponent } from './update/update.component';
 import {MatInputModule} from "@angular/material/input";
 
@@ -46,7 +46,8 @@ import {MatInputModule} from "@angular/material/input";
         MatFormFieldModule,
         FormsModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

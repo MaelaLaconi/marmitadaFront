@@ -3,11 +3,11 @@
 <h2 mat-dialog-title *ngIf="!isUpdateMode">Create new recipe</h2>
 
 <mat-dialog-content>
-  <form #f="ngForm">
+  <form #f="ngForm" [formGroup]="productForm">
 
     <p *ngIf="isUpdateMode">
       <mat-form-field class="full-width">
-        <input matInput placeholder="ID (disabled)" disabled  name="id" [ngModel]="model.id" />
+        <input matInput placeholder="ID (disabled)" disabled  name="id" [ngModel]="model.id"  [ngModelOptions]="{standalone: true}" />
       </mat-form-field>
     </p>
 
@@ -15,18 +15,34 @@
       <tr>
         <td>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Recipe name *" [(ngModel)]="model.name" name="recipeName"/>
+            <input matInput placeholder="Recipe name *" [(ngModel)]="model.name" name="recipeName"  [ngModelOptions]="{standalone: true}"/>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Pseudo *" [(ngModel)]="model.author.pseudo" name="pseudo"/>
+            <input matInput placeholder="Pseudo *" [(ngModel)]="model.author.pseudo" name="pseudo"  [ngModelOptions]="{standalone: true}"/>
           </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <table class="table table-bordered" formArrayName="ingredients">
+      <tr>
+        <th colspan="2">Liste des ingrédients:</th>
+        <th width="150px"><button type="button" (click)="addIngredient()" class="btn btn-primary">Ajouter ingédient</button></th>
+      </tr>
+      <tr *ngFor="let quantity of ingredients().controls; let i=index" [formGroupName]="i">
+        <td>
+          Ingrédient :
+          <input type="text" formControlName="ingr" class="form-control">
+        </td>
+        <td>
+          <button (click)="removeIngredient(i)" class="btn btn-danger">Remove</button>
         </td>
       </tr>
     </table>
 
     <p>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Description *" [(ngModel)]="model.description" name="description"/>
+        <input matInput placeholder="Description *" [(ngModel)]="model.description" name="description"  [ngModelOptions]="{standalone: true}"/>
       </mat-form-field>
     </p>
 

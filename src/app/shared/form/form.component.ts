@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { Recipe} from "../../recipe/recipe.type";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-form',
@@ -8,6 +8,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, OnChanges {
+
+  private _productForm: FormGroup;
 
 
   // private property to store update mode flag
@@ -21,14 +23,39 @@ export class FormComponent implements OnInit, OnChanges {
   private readonly _submit$: EventEmitter<Recipe>;
 
 
-  constructor() {
+  constructor(private _fb:FormBuilder) {
+    this._productForm = this._fb.group({
+      ingredients: this._fb.array([]) ,
+    });
+
     this._cancel$ = new EventEmitter<void>();
     this._submit$ = new EventEmitter<Recipe>();
     this._model = {} as Recipe;
     this._isUpdateMode = false;
   }
 
+  ingredients() : FormArray {
+    return this._productForm.get("ingredients") as FormArray
+  }
+
+  newIngredient(): FormGroup {
+    return this._fb.group({
+      ingr: '',
+
+    })
+  }
+
+
+  addIngredient() {
+    this.ingredients().push(this.newIngredient());
+  }
+
+  removeIngredient(i:number) {
+    this.ingredients().removeAt(i);
+  }
+
   /**
+   *
    * Sets private property _model
    */
   @Input()
@@ -83,9 +110,14 @@ export class FormComponent implements OnInit, OnChanges {
    * Function to emit event to submit form and recipe
    */
   submit(): void {
+    console.log(this._productForm.value);
     this._submit$.emit(this._model);
   }
 
+
+  get productForm(): FormGroup {
+    return this._productForm;
+  }
 
   ngOnChanges(record: any): void {
     if (record.model && record.model.currentValue) {
