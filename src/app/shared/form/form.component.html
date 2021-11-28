@@ -1,1 +1,48 @@
 <p>form works!</p>
+<h2 mat-dialog-title>Create new recipe</h2>
+
+<mat-dialog-content>
+  <form #f="ngForm">
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First name *" ngModel name="firstname"/>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last Name *" ngModel name="lastname"/>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Pseudo *" ngModel name="pseudo"/>
+          </mat-form-field>
+        </td>
+
+      </tr>
+    </table>
+
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Recipe name *" ngModel name="recipe_name"/>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Description *" ngModel name="description"/>
+      </mat-form-field>
+    </p>
+
+
+
+
+    <!-- required by API, so we put static content which is not editable but sent to the API -->
+    <input type="hidden" [ngModel]="entity" name="entity">
+  </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" type="submit" (click)="add(f.value)">Save</button>
+</mat-dialog-actions>

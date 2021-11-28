@@ -14,7 +14,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { FormComponent } from './shared/form/form.component';
-import { FicheComponent } from './shared/fiche/fiche.component';
+import { FicheComponent } from './shared/card/card.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { FicheComponent } from './shared/fiche/fiche.component';
         BrowserAnimationsModule,
         MatToolbarModule,
         MatCardModule,
-        MatIconModule
+        MatIconModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

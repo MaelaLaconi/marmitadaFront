@@ -13,17 +13,17 @@ import {Observable} from "rxjs";
 })
 export class CookbookComponent implements OnInit {
   private _cookbook: Recipe[];
-  private readonly _backendURL: any;
 
   // private property to store dialogStatus value
   private _dialogStatus: string;
   // private property to store dialog reference
   private _cookbookDialog: MatDialogRef<DialogComponent, Recipe> | undefined;
 
-  constructor(private _cookbookService: CookbookService/*, private _dialog: MatDialog*/) {
+  private _view: string; //pour plus tard si on veut switch de vue
+  constructor(private _cookbookService: CookbookService, private _dialog: MatDialog) {
     this._cookbook=[];
-    this._backendURL=[];
     this._dialogStatus = 'inactive';
+    this._view= 'list';
     }
 
   ngOnInit(): void {
@@ -37,6 +37,10 @@ export class CookbookComponent implements OnInit {
   }
 
 
+  get view(): string {
+    return this._view;
+  }
+
   /**
    * Returns private property _dialogStatus
    */
@@ -44,8 +48,29 @@ export class CookbookComponent implements OnInit {
     return this._dialogStatus;
   }
 
-  /*
   showDialog(): void {
+    // set dialog status
+    this._dialogStatus = 'active';
+
+    // open modal
+    this._cookbookDialog = this._dialog.open(DialogComponent, {
+      width: '500px',
+      disableClose: true
+    });
+    // subscribe to afterClosed observable to set dialog status and do process
+    this._cookbookDialog.afterClosed()
+      .pipe(
+        filter((recipe: Recipe | undefined) => !!recipe),
+        mergeMap((recipe: Recipe | undefined) => this._add(recipe))
+      )
+      .subscribe({
+        next: (recipe: Recipe) => this._cookbook = this._cookbook.concat(recipe),
+        error: () => this._dialogStatus = 'inactive',
+        complete: () => this._dialogStatus = 'inactive'
+      });
+  }
+
+  /*showDialog(): void {
     // set dialog status
     this._dialogStatus = 'active';
 
@@ -64,8 +89,8 @@ export class CookbookComponent implements OnInit {
           /*delete person?.id;
           delete person?.photo;
 */
-  /*
-          return recipe;
+
+       /*   return recipe;
         }),
         mergeMap((recipe: Recipe | undefined) => this._add(recipe))
       )
@@ -75,7 +100,7 @@ export class CookbookComponent implements OnInit {
         complete: () => this._dialogStatus = 'inactive'
       });
   }
-*/
+
   /**
    * Add new person
    */

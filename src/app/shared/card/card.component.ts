@@ -4,8 +4,8 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-fiche',
-  templateUrl: './fiche.component.html',
-  styleUrls: ['./fiche.component.css']
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css']
 })
 export class FicheComponent implements OnInit {
 

@@ -1,22 +1,23 @@
 <p>cookbook works!</p>
-<section>
-  <mat-card class="mat-whiteframe-2dp" >
-    <mat-card-title-group *ngFor="let recipe of cookbook">
-      <mat-card-title >
-        <a href="javascript:void(0);">
-          <span>{{ recipe.name }}</span>
-        </a>
-      </mat-card-title>
+<section [ngSwitch]="view">
+  <section *ngSwitchCase="'list'">
+    <mat-card class="mat-whiteframe-2dp" >
+      <mat-card-title-group *ngFor="let recipe of cookbook">
+        <mat-card-title >
+          <a href="javascript:void(0);">
+            <span>{{ recipe.name }}</span>
+          </a>
+        </mat-card-title>
 
-      <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
-      <mat-card-subtitle>Auteur : {{recipe.author.pseudo}}</mat-card-subtitle>
-      <mat-card-subtitle>Temps de préparation : {{recipe.preparationTime}}</mat-card-subtitle>
+        <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
+        <mat-card-subtitle>Auteur : {{recipe.author.pseudo}}</mat-card-subtitle>
+        <mat-card-subtitle>Temps de préparation : {{recipe.preparationTime}}</mat-card-subtitle>
 
-    </mat-card-title-group>
-  </mat-card>
-
-  <!--<button (click)="showDialog()" *ngIf="dialogStatus === 'inactive'" mat-fab color="accent">
-    <i class="material-icons">ajouter</i>
-  </button>-->
-
+      </mat-card-title-group>
+    </mat-card>
+  </section>
 </section>
+
+<button (click)="showDialog()" *ngIf="dialogStatus === 'inactive'" mat-fab color="accent">
+  <i class="material-icons">add</i>
+</button>
