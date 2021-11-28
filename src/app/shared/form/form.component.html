@@ -32,7 +32,7 @@
       <tr *ngFor="let quantity of ingredients().controls; let i=index" [formGroupName]="i">
         <td>
           Ingrédient :
-          <input type="text" formControlName="ingr" class="form-control">
+          <input matInput [(ngModel)]="model.ingredients[i]"  [ngModelOptions]="{standalone: true}">
         </td>
         <td>
           <button (click)="removeIngredient(i)" class="btn btn-danger">Remove</button>
