@@ -1,54 +1,41 @@
 <p>form works!</p>
-<h2 mat-dialog-title>Create new recipe</h2>
+<h2 mat-dialog-title *ngIf="isUpdateMode">Update {{ model.name }} by {{ model.author.pseudo }} </h2>
+<h2 mat-dialog-title *ngIf="!isUpdateMode">Create new recipe</h2>
 
 <mat-dialog-content>
   <form #f="ngForm">
+
+    <p *ngIf="isUpdateMode">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="ID (disabled)" disabled  name="id" [ngModel]="model.id" />
+      </mat-form-field>
+    </p>
 
     <table class="full-width" cellspacing="0">
       <tr>
         <td>
           <mat-form-field class="full-width">
-            <input matInput placeholder="First name *" ngModel name="firstname"/>
+            <input matInput placeholder="Recipe name *" [(ngModel)]="model.name" name="recipeName"/>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Last Name *" ngModel name="lastname"/>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Pseudo *" ngModel name="pseudo"/>
+            <input matInput placeholder="Pseudo *" [(ngModel)]="model.author.pseudo" name="pseudo"/>
           </mat-form-field>
         </td>
-
       </tr>
     </table>
 
     <p>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Recipe name *" ngModel name="recipe_name"/>
-      </mat-form-field>
-    </p>
-
-    <p>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Description *" ngModel name="description"/>
+        <input matInput placeholder="Description *" [(ngModel)]="model.description" name="description"/>
       </mat-form-field>
     </p>
 
 
-    <p>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Phone * (ex: 0612345678)" ngModel name="phone"/>
-      </mat-form-field>
-    </p>
-
-
-
-    <!-- required by API, so we put static content which is not editable but sent to the API -->
-    <input type="hidden" [ngModel]="entity" name="entity">
   </form>
 </mat-dialog-content>
 
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
-  <button mat-button color="primary" type="submit" (click)="add(f.value)">Save</button>
+  <button mat-button color="primary" type="submit" (click)="submit()">Save</button>
 </mat-dialog-actions>

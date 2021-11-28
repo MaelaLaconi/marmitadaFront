@@ -1,3 +1,2 @@
 <p>dialog works!</p>
-
-<app-form (addRecipe)="onSave($event)" (cancel)="onCancel()"></app-form>
+<app-form (submit)="onSave($event)" (cancel)="onCancel()" [model]="recipe"></app-form>

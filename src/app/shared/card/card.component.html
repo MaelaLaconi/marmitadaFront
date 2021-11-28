@@ -30,6 +30,10 @@
         <button mat-button title="Delete" (click)="delete(recipe)">
           <mat-icon>delete</mat-icon>
         </button>
+
+        <a mat-button title="Edit" [routerLink]="['/edit', recipe?.id]">
+          <mat-icon>edit</mat-icon>
+        </a>
       </div>
     </mat-card-content>
   </mat-card>

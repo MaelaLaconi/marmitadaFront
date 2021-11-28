@@ -7,43 +7,64 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges {
 
+
+  // private property to store update mode flag
+  private _isUpdateMode: boolean;
+  // private property to store model value
+  private _model: Recipe;
 
   // private property to store cancel$ value
   private readonly _cancel$: EventEmitter<void>;
 
-  private readonly _add$: EventEmitter<Recipe>;
+  private readonly _submit$: EventEmitter<Recipe>;
 
-// private property to store entity
-  private readonly _entity: string;
 
   constructor() {
-    this._entity = 'LMFI';
     this._cancel$ = new EventEmitter<void>();
-    this._add$ = new EventEmitter<Recipe>();
+    this._submit$ = new EventEmitter<Recipe>();
+    this._model = {} as Recipe;
+    this._isUpdateMode = false;
+  }
+
+  /**
+   * Sets private property _model
+   */
+  @Input()
+  set model(model: Recipe) {
+    this._model = model;
+  }
+
+  /**
+   * Returns private property _model
+   */
+  get model(): Recipe {
+    return this._model;
+  }
+
+  /**
+   * Returns private property _isUpdateMode
+   */
+  get isUpdateMode(): boolean {
+    return this._isUpdateMode;
   }
 
   /**
    * Returns private property _cancel$
    */
-  @Output('cancel') get cancel$(): EventEmitter<any> {
+  @Output('cancel') get cancel$(): EventEmitter<void> {
     return this._cancel$;
   }
 
   /**
    * Returns private property _add$
    */
-  @Output('addRecipe') get add$(): EventEmitter<any> {
-    return this._add$;
+  @Output('submit') get submit$(): EventEmitter<Recipe> {
+    return this._submit$;
   }
 
-  /**
-   * Returns private property _entity
-   */
-  get entity(): string {
-    return this._entity;
-  }
+
 
   /**
    * OnInit implementation
@@ -59,9 +80,33 @@ export class FormComponent implements OnInit {
   }
 
   /**
-   * Function to emit event to add new recipe
+   * Function to emit event to submit form and recipe
    */
-  add(recipe: Recipe): void {
-    this._add$.emit(recipe);
+  submit(): void {
+    this._submit$.emit(this._model);
   }
+
+
+  ngOnChanges(record: any): void {
+    if (record.model && record.model.currentValue) {
+      this._model = record.model.currentValue;
+      this._isUpdateMode = true;
+    } else {
+      this._model = {
+        id: '',
+        name: '',
+        description: '',
+        author: {
+          pseudo: '',
+        },
+        ingredients: [],
+        steps: [],
+        difficulty: 0,
+        preparationTime: 0,
+        cookingTime: 0
+      };
+      this._isUpdateMode = false;
+    }
+  }
+
 }

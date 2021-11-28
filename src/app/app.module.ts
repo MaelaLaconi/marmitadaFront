@@ -19,6 +19,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import { UpdateComponent } from './update/update.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { UpdateComponent } from './update/update.component';
         MatIconModule,
         MatDialogModule,
         MatFormFieldModule,
-        FormsModule
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule
     ],
   providers: [],
   bootstrap: [AppComponent]

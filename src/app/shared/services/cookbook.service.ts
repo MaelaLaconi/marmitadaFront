@@ -81,6 +81,7 @@ export class CookbookService {
    * Function to create a new recipe
    */
   create(recipe: Recipe): Observable<any> {
+    console.log("dans create");
     return this._http.post<Recipe>(this._backendURL.allRecipe, recipe, this._options());
   }
 
@@ -95,6 +96,8 @@ export class CookbookService {
    * Function to delete one recipe for current id
    */
   delete(id: string): Observable<string> {
+    console.log("dans le delete");
+
     return this._http.delete(this._backendURL.oneRecipe.replace(':id', id))
       .pipe(
         map(() => id)
