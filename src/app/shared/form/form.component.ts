@@ -24,14 +24,36 @@ export class FormComponent implements OnInit, OnChanges {
 
 
   constructor(private _fb:FormBuilder) {
-    this._productForm = this._fb.group({
+    /*this._productForm = this._fb.group({
       ingredients: this._fb.array([]) ,
-    });
+      steps: this._fb.array([]),
+    });*/
+
+    this._productForm = this._buildForm();
 
     this._cancel$ = new EventEmitter<void>();
     this._submit$ = new EventEmitter<Recipe>();
     this._model = {} as Recipe;
     this._isUpdateMode = false;
+  }
+
+  steps() : FormArray {
+    return this._productForm.get("steps") as FormArray
+  }
+
+  newStep(): FormGroup {
+    return this._fb.group({
+      step: '',
+
+    })
+  }
+
+  addStep() {
+    this.steps().push(this.newStep());
+  }
+
+  removeStep(i:number) {
+    this.steps().removeAt(i);
   }
 
   ingredients() : FormArray {
@@ -141,4 +163,37 @@ export class FormComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Function to build our form
+   */
+  private _buildForm(): FormGroup {
+    return new FormGroup({
+      id: new FormControl(),
+      name: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      firstname: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      lastname: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      description: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      pseudo: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      ingredients: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      steps: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      difficulty: new FormControl('', Validators.required),
+      cookingTime: new FormControl('', Validators.required),
+      preparationTime: new FormControl('', Validators.required),
+
+    });
+  }
 }

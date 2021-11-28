@@ -3,22 +3,67 @@
 <h2 mat-dialog-title *ngIf="!isUpdateMode">Create new recipe</h2>
 
 <mat-dialog-content>
-  <form #f="ngForm" [formGroup]="productForm">
+  <form novalidate [formGroup]="productForm">
 
-    <p *ngIf="isUpdateMode">
+    <!--<p *ngIf="isUpdateMode">
       <mat-form-field class="full-width">
-        <input matInput placeholder="ID (disabled)" disabled  name="id" [ngModel]="model.id"  [ngModelOptions]="{standalone: true}" />
+        <input matInput placeholder="ID (disabled)"  name="id" [ngModel]="model.id"  [ngModelOptions]="{standalone: true}" />
       </mat-form-field>
-    </p>
+    </p>-->
 
     <table class="full-width" cellspacing="0">
       <tr>
         <td>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Recipe name *" [(ngModel)]="model.name" name="recipeName"  [ngModelOptions]="{standalone: true}"/>
+            Recipe name
+            <input matInput placeholder="Recipe name" formControlName="recipeName" minlength="2" name="recipeName"/>
+            <mat-error *ngIf="productForm.get('recipeName')?.dirty && productForm.get('recipeName')?.hasError('required')">
+              Recipe name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.get('recipeName')?.dirty && productForm.get('recipeName')?.hasError('minlength')">
+              Recipe name is <strong>2 chars min</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Description *"  name="description"  formControlName="description" minlength="2" required/>
+            <mat-error *ngIf="productForm.get('description')?.dirty && productForm.get('description')?.hasError('required')">
+              Description is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.get('description')?.dirty && productForm.get('description')?.hasError('minlength')">
+              Description is <strong>2 chars min</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Pseudo "  name="pseudo"  formControlName="pseudo" minlength="2" required/>
+            <mat-error *ngIf="productForm.get('pseudo')?.dirty && productForm.get('pseudo')?.hasError('required')">
+              Pseudo is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.get('pseudo')?.dirty && productForm.get('pseudo')?.hasError('minlength')">
+              Pseudo is <strong>2 chars min</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Firstname *" name="firstname"  formControlName="firstname" minlength="2" required/>
+            <mat-error *ngIf="productForm.get('firstname')?.dirty && productForm.get('firstname')?.hasError('required')">
+              Firstname is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.get('firstname')?.dirty && productForm.get('firstname')?.hasError('minlength')">
+              Firstname is <strong>2 chars min</strong>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Pseudo *" [(ngModel)]="model.author.pseudo" name="pseudo"  [ngModelOptions]="{standalone: true}"/>
+            <input matInput placeholder="Lastname *" name="lastname" formControlName="lastname" minlength="2" required/>
+            <mat-error *ngIf="productForm.get('lastname')?.dirty && productForm.get('lastname')?.hasError('required')">
+              Lastname is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.get('lastname')?.dirty && productForm.get('lastname')?.hasError('minlength')">
+              Lastname is <strong>2 chars min</strong>
+            </mat-error>
           </mat-form-field>
         </td>
       </tr>
@@ -31,27 +76,79 @@
       </tr>
       <tr *ngFor="let quantity of ingredients().controls; let i=index" [formGroupName]="i">
         <td>
-          Ingrédient :
-          <input matInput [(ngModel)]="model.ingredients[i]"  [ngModelOptions]="{standalone: true}">
+          <mat-form-field class="full-width">
+            Ingrédient :
+            <input matInput placeholder="Ingrédient" name="ingredient" formControlName="ingredient" minlength="2" required>
+            <mat-error *ngIf="productForm.get('ingredient')?.dirty && productForm.get('ingredient')?.hasError('required')">
+              Ingredient is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.get('ingredient')?.dirty && productForm.get('ingredient')?.hasError('minlength')">
+              Ingredient is <strong>2 chars min</strong>
+            </mat-error>
+          </mat-form-field>
         </td>
         <td>
-          <button (click)="removeIngredient(i)" class="btn btn-danger">Remove</button>
+          <button (click)="removeIngredient(i)" class="btn btn-danger">Supprimer</button>
         </td>
       </tr>
     </table>
 
-    <p>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Description *" [(ngModel)]="model.description" name="description"  [ngModelOptions]="{standalone: true}"/>
-      </mat-form-field>
-    </p>
+
+    <table class="table table-bordered" formArrayName="steps">
+      <tr>
+        <th colspan="2">Liste des étapes:</th>
+        <th width="150px"><button type="button" (click)="addStep()" class="btn btn-primary">Ajouter une étape</button></th>
+      </tr>
+      <tr *ngFor="let quantity of steps().controls; let i=index" [formGroupName]="i">
+        <mat-form-field class="full-width">
+        <td>
+          Step :
+          <input matInput placeholder="Step" name="step" formControlName="steo" minlength="2" required>
+          <mat-error *ngIf="productForm.get('step')?.dirty && productForm.get('step')?.hasError('required')">
+            Step is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="productForm.get('step')?.dirty && productForm.get('step')?.hasError('minlength')">
+            Step is <strong>2 chars min</strong>
+          </mat-error>
+        </td>
+        <td>
+          <button (click)="removeStep(i)" class="btn btn-danger">Supprimer</button>
+        </td>
+        </mat-form-field>
+      </tr>
+    </table>
 
 
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="Difficulty" name="difficulty" formControlName="difficulty" required/>
+            <mat-error *ngIf="productForm.get('difficulty')?.dirty && productForm.get('difficulty')?.hasError('required')">
+              Difficulty is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="Preparation time" name="preparationTime" formControlName="preparationTime" required/>
+            <mat-error *ngIf="productForm.get('preparationTime')?.dirty && productForm.get('preparationTime')?.hasError('required')">
+              Preparation time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput type="number" placeholder="Cooking time" name="cookingTime" formControlName="cookingTime" required/>
+            <mat-error *ngIf="productForm.get('cookingTime')?.dirty && productForm.get('cookingTime')?.hasError('required')">
+              Cooking time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
   </form>
 </mat-dialog-content>
 
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
-  <button mat-button color="primary" type="submit" (click)="submit()">Save</button>
+  <button mat-button color="primary" type="submit" (click)="submit()"  [disabled]="productForm.invalid" >Save</button>
 </mat-dialog-actions>
