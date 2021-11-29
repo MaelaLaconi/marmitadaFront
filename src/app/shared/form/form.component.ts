@@ -27,6 +27,7 @@ export class FormComponent implements OnInit, OnChanges {
   constructor(private _fb:FormBuilder) {
     this._isAddedStep= false;
     this._isAddedIngr = false;
+
     //this._productForm = this._buildForm();
     this._productForm = this._fb.group({
       ingredients: this._fb.array([]) ,
@@ -102,22 +103,26 @@ export class FormComponent implements OnInit, OnChanges {
     return this._productForm.get("ingredients") as FormArray
   }
 
+
+
   newIngredient(): FormGroup {
     this._isAddedIngr = true;
-    this._productForm.addControl('ingredients', new FormControl('', Validators.compose([
+    console.log("dans le new ingredient "+this._isAddedIngr)
+
+    this._productForm.addControl('ingredients',new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
     ])));
     return this._fb.group({
-      ingredient: '',
+      ingr: '',
 
     })
   }
-
 
   addIngredient() {
     console.log("dans le aaaaaaaaaaaadd")
     this.ingredients().push(this.newIngredient());
   }
+
 
   removeIngredient(i:number) {
     if(this.ingredients().length==0){
