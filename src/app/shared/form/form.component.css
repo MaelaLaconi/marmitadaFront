@@ -11,3 +11,12 @@ img {
 .full-width {
   width: 100%;
 }
+
+.mgb15{
+  margin-bottom: 15px;
+}
+
+.flexible {
+  display: flex;
+  flex-direction: column;
+}

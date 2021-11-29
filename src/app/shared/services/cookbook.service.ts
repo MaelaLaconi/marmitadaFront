@@ -81,17 +81,17 @@ export class CookbookService {
    * Function to create a new recipe
    */
   create(recipe: Recipe): Observable<any> {
-    console.log("dans create"+ recipe.name);
-    console.log("dans create"+ recipe.description);
-    console.log("dans create"+ recipe.author.pseudo);
-    console.log("dans create"+ recipe.author.firstname);
-    console.log("dans create"+ recipe.author.lastname);
-    console.log("dans create"+ recipe.ingredients[0]);
-    console.log("dans create"+ recipe.steps[0]);
-    console.log("dans create"+ recipe.difficulty);
-    console.log("dans create"+ recipe.preparationTime);
-    console.log("dans create"+ recipe.cookingTime);
-    console.log("dans create"+ recipe.id);
+    console.log("dans create "+ recipe.name);
+    console.log("dans create "+ recipe.description);
+    console.log("dans create "+ recipe.author.pseudo);
+    console.log("dans create "+ recipe.author.firstname);
+    console.log("dans create "+ recipe.author.lastname);
+    console.log("dans create "+ recipe.ingredients[0]);
+    console.log("dans create "+ recipe.steps[0]);
+    console.log("dans create "+ recipe.difficulty);
+    console.log("dans create "+ recipe.preparationTime);
+    console.log("dans create "+ recipe.cookingTime);
+    console.log("dans create "+ recipe.id);
     console.log("JSON.stringify(obj)"+ JSON.stringify(recipe.steps));
 
     const recipe1 : Recipe = {
