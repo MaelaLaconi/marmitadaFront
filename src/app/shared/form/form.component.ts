@@ -87,6 +87,8 @@ export class FormComponent implements OnInit, OnChanges {
 
   addStep() {
     this.steps().push(this.newStep());
+    console.log(this._productForm.value);
+
   }
 
   removeStep(i:number) {
@@ -113,7 +115,7 @@ export class FormComponent implements OnInit, OnChanges {
       Validators.required, Validators.minLength(2)
     ])));
     return this._fb.group({
-      ingr: '',
+      ingredients: '',
 
     })
   }
