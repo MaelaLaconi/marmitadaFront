@@ -9,6 +9,7 @@ export const environment = {
       randomRecipe: '/recipe/random',
       oneRecipe: '/recipes/:id',
       allRecipeCat:'/recipes/category/:category',
+      allCateg:'/recipes/category',
     }
   }
 };

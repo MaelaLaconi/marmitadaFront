@@ -85,6 +85,17 @@ export class CookbookService {
       );
   }
 
+  /**
+   * Function to return list of recipe by category
+   */
+  fetchAllCategory(): Observable<Recipe[]>  {
+    return this._http.get<Recipe[]>(this._backendURL.allCateg)
+      .pipe(
+        filter((recipes: Recipe[]) => !!recipes),
+        defaultIfEmpty([] as Recipe[])
+      );
+  }
+
 
   get defautltRecipe(): Recipe {
     return this._defautltRecipe;
