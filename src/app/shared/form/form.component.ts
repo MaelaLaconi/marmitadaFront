@@ -34,6 +34,9 @@ export class FormComponent implements OnInit, OnChanges {
       steps: this._fb.array([]),
     });
 
+    this.addStep();
+    this.addIngredient();
+
     this._productForm.addControl('id', new FormControl());
     this._productForm.addControl('name', new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
@@ -53,16 +56,6 @@ export class FormComponent implements OnInit, OnChanges {
     this._productForm.addControl('description', new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
     ])));
-
-
-
-    /*
-    address: new FormGroup({
-        street: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
-        postalCode: new FormControl('', Validators.required)
-      }),
-     */
 
     this._productForm.addControl('difficulty',new FormControl('', Validators.required));
     this._productForm.addControl('cookingTime',new FormControl('', Validators.required));
