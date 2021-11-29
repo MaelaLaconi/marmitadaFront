@@ -35,35 +35,43 @@
           </mat-form-field>
 
 
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Pseudo "  name="pseudo"  formControlName="pseudo" minlength="2" required/>
-            <mat-error *ngIf="productForm.get('pseudo')?.dirty && productForm.get('pseudo')?.hasError('required')">
-              Pseudo is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="productForm.get('pseudo')?.dirty && productForm.get('pseudo')?.hasError('minlength')">
-              Pseudo is <strong>2 chars min</strong>
-            </mat-error>
-          </mat-form-field>
 
 
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Firstname *" name="firstname"  formControlName="firstname" minlength="2" required/>
-            <mat-error *ngIf="productForm.get('firstname')?.dirty && productForm.get('firstname')?.hasError('required')">
-              Firstname is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="productForm.get('firstname')?.dirty && productForm.get('firstname')?.hasError('minlength')">
-              Firstname is <strong>2 chars min</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Lastname *" name="lastname" formControlName="lastname" minlength="2" required/>
-            <mat-error *ngIf="productForm.get('lastname')?.dirty && productForm.get('lastname')?.hasError('required')">
-              Lastname is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="productForm.get('lastname')?.dirty && productForm.get('lastname')?.hasError('minlength')">
-              Lastname is <strong>2 chars min</strong>
-            </mat-error>
-          </mat-form-field>
+          <p formGroupName="author">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Author" formControlName="pseudo" required name="pseudo"/>
+              <mat-error *ngIf="productForm.get('author')?.get('pseudo')?.dirty && productForm.get('author')?.get('pseudo')?.hasError('required')">
+                Pseudo is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </p>
+
+          <table class="full-width" cellspacing="0" formGroupName="author">
+            <tr>
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Firstname *" name="firstname"  formControlName="firstname" minlength="2" required/>
+                  <mat-error *ngIf="productForm.get('author')?.get('firstname')?.dirty && productForm.get('author')?.get('firstname')?.hasError('required')">
+                    Firstname is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="productForm.get('author')?.get('firstname')?.dirty && productForm.get('author')?.get('firstname')?.hasError('minlength')">
+                    Firstname is <strong>2 chars min</strong>
+                  </mat-error>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Lastname *" name="lastname" formControlName="lastname" minlength="2" required/>
+                  <mat-error *ngIf="productForm.get('author')?.get('lastname')?.dirty && productForm.get('author')?.get('lastname')?.hasError('required')">
+                    Lastname is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="productForm.get('author')?.get('lastname')?.dirty && productForm.get('author')?.get('lastname')?.hasError('minlength')">
+                    Lastname is <strong>2 chars min</strong>
+                  </mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
         </td>
       </tr>
     </table>

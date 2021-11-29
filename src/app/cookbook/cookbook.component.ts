@@ -114,6 +114,8 @@ export class CookbookComponent implements OnInit {
    * Add new person
    */
   private _add(recipe: Recipe | undefined): Observable<Recipe> {
+    console.log("dans le add")
+    
     return this._cookbookService.create(recipe as Recipe);
   }
 }

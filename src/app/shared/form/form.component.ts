@@ -38,18 +38,31 @@ export class FormComponent implements OnInit, OnChanges {
     this._productForm.addControl('name', new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
     ])));
-    this._productForm.addControl('firstname', new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(2)
-    ])));
-    this._productForm.addControl('lastname', new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(2)
-    ])));
+    this._productForm.addControl('author', new FormGroup({
+      pseudo: new FormControl('', Validators.compose([
+          Validators.required, Validators.minLength(2)
+        ])),
+      firstname: new FormControl('', Validators.compose([
+          Validators.required, Validators.minLength(2)
+        ])),
+      lastname: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ]))
+    }));
+
     this._productForm.addControl('description', new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
     ])));
-    this._productForm.addControl('pseudo', new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(2)
-    ])));
+
+
+
+    /*
+    address: new FormGroup({
+        street: new FormControl('', Validators.required),
+        city: new FormControl('', Validators.required),
+        postalCode: new FormControl('', Validators.required)
+      }),
+     */
 
     this._productForm.addControl('difficulty',new FormControl('', Validators.required));
     this._productForm.addControl('cookingTime',new FormControl('', Validators.required));
@@ -74,7 +87,6 @@ export class FormComponent implements OnInit, OnChanges {
 
   newStep(): FormGroup {
     this._isAddedStep = true;
-    console.log("dans le new step "+this._isAddedStep)
 
     this._productForm.addControl('steps',new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
@@ -87,14 +99,12 @@ export class FormComponent implements OnInit, OnChanges {
 
   addStep() {
     this.steps().push(this.newStep());
-    console.log(this._productForm.value);
 
   }
 
   removeStep(i:number) {
     if(this.steps().length == 0){
       this._isAddedStep = false;
-      console.log("dans le remove "+this._isAddedStep)
       this._productForm.removeControl('steps');
 
     }
@@ -109,8 +119,6 @@ export class FormComponent implements OnInit, OnChanges {
 
   newIngredient(): FormGroup {
     this._isAddedIngr = true;
-    console.log("dans le new ingredient "+this._isAddedIngr)
-
     this._productForm.addControl('ingredients',new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
     ])));
@@ -121,7 +129,6 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   addIngredient() {
-    console.log("dans le aaaaaaaaaaaadd")
     this.ingredients().push(this.newIngredient());
   }
 
@@ -193,6 +200,18 @@ export class FormComponent implements OnInit, OnChanges {
    */
   submit(recipe: Recipe): void {
     console.log(this._productForm.value);
+    console.log("dans submit"+ recipe.name);
+    console.log("dans submit"+ recipe.description);
+    console.log("dans submit"+ recipe.author.pseudo);
+    console.log("dans submit"+ recipe.author.firstname);
+    console.log("dans submit"+ recipe.author.lastname);
+    console.log("dans submit"+ recipe.ingredients[0]);
+    console.log("dans submit"+ recipe.steps[1]);
+    console.log("dans submit"+ recipe.difficulty);
+    console.log("dans submit"+ recipe.preparationTime);
+    console.log("dans submit"+ recipe.cookingTime);
+    console.log("dans submit"+ recipe.id);
+
     this._submit$.emit(recipe);
   }
 

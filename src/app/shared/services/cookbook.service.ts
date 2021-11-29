@@ -87,7 +87,7 @@ export class CookbookService {
     console.log("dans create"+ recipe.author.firstname);
     console.log("dans create"+ recipe.author.lastname);
     console.log("dans create"+ recipe.ingredients[0]);
-    console.log("dans create"+ recipe.steps[1]);
+    console.log("dans create"+ recipe.steps[0]);
     console.log("dans create"+ recipe.difficulty);
     console.log("dans create"+ recipe.preparationTime);
     console.log("dans create"+ recipe.cookingTime);
@@ -107,8 +107,6 @@ export class CookbookService {
    * Function to delete one recipe for current id
    */
   delete(id: string): Observable<string> {
-    console.log("dans le delete");
-
     return this._http.delete(this._backendURL.oneRecipe.replace(':id', id))
       .pipe(
         map(() => id)
