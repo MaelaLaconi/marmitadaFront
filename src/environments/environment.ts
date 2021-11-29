@@ -13,7 +13,7 @@ export const environment = {
       allRecipe: '/recipes',
       randomRecipe: '/recipes/random',
       oneRecipe: '/recipes/:id',
-      allRecipeCat:'/recipes/:category',
+      allRecipeCat:'/recipes/category/:category',
     }
   }
 };
