@@ -134,4 +134,15 @@ export class CookbookService {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }
 
+  /**
+   * Function to return one random person from people list
+   */
+  fetchRandom(): Observable<Recipe> {
+    return this._http.get<Recipe>(this._backendURL.randomRecipe)
+      .pipe(
+        filter((recipe: Recipe) => !!recipe),
+        defaultIfEmpty(this._defautltRecipe)
+      );
+  }
+
 }
