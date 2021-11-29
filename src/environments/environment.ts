@@ -12,8 +12,8 @@ export const environment = {
     endpoints: {
       allRecipe: '/recipes',
       randomRecipe: '/recipes/random',
-      oneRecipe: '/recipes/:id'
-
+      oneRecipe: '/recipes/:id',
+      allRecipeCat:'/recipes/:category',
     }
   }
 };

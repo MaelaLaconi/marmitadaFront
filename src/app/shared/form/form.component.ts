@@ -81,6 +81,16 @@ export class FormComponent implements OnInit, OnChanges {
     return this._isAddedStep;
   }
 
+  ingredientsArray(): Array<any>{
+    return new Array(this.ingredients().length)
+      .map((v, index) => this.ingredients().at(index) as FormGroup)
+  }
+
+  stepsArray(): Array<any>{
+    return new Array(this.steps().length)
+      .map((v, index) => this.steps().at(index) as FormGroup)
+  }
+
   steps() : FormArray {
     return this._productForm.get("steps") as FormArray
   }
@@ -93,7 +103,6 @@ export class FormComponent implements OnInit, OnChanges {
     ])));
     return this._fb.group({
       step: '',
-
     })
   }
 
@@ -199,7 +208,22 @@ export class FormComponent implements OnInit, OnChanges {
    * Function to emit event to submit form and recipe
    */
   submit(recipe: Recipe): void {
-      this._submit$.emit(recipe);
+
+    console.log("dans le submit + "+ Object.values(recipe.steps))
+    const recipe1 : Recipe = {
+
+      'name': recipe.name,
+      'description': recipe.description,
+      'author': {
+        'pseudo': recipe.author.pseudo
+      },
+      'ingredients': this.ingredientsArray().map(value => {return value.ingredients}),
+      'steps': this.stepsArray().map(value => {return value.step}),
+      'difficulty': recipe.difficulty,
+      'preparationTime': recipe.preparationTime,
+      'cookingTime': recipe.cookingTime,
+    };
+      this._submit$.emit(recipe1);
   }
 
 

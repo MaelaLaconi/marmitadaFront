@@ -73,6 +73,19 @@ export class CookbookService {
     return this._http.get<Recipe>(this._backendURL.oneRecipe.replace(':id', id));
   }
 
+
+  /**
+   * Function to return list of recipe by category
+   */
+  fetchByCategory(category: string): Observable<Recipe[]>  {
+    return this._http.get<Recipe[]>(this._backendURL.allRecipeCat.replace(':category', category))
+      .pipe(
+        filter((recipes: Recipe[]) => !!recipes),
+        defaultIfEmpty([] as Recipe[])
+      );
+  }
+
+
   get defautltRecipe(): Recipe {
     return this._defautltRecipe;
   }
@@ -92,26 +105,10 @@ export class CookbookService {
     console.log("dans create"+ recipe.preparationTime);
     console.log("dans create"+ recipe.cookingTime);
     console.log("dans create"+ recipe.id);
-    console.log("JSON.stringify(obj)"+ JSON.stringify(recipe.steps));
+    console.log("JSON.stringify(obj)"+ JSON.stringify(recipe.steps[0]));
 
-    const recipe1 : Recipe = {
 
-      'name': recipe.name,
-      'description': recipe.description,
-      'author': {
-      'pseudo': recipe.author.pseudo
-    },
-      'ingredients': [
-        recipe.ingredients[0],
-      ],
-      'steps': [
-        recipe.steps[0],
-    ],
-      'difficulty': recipe.difficulty,
-      'preparationTime': recipe.preparationTime,
-      'cookingTime': recipe.cookingTime,
-    };
-    return this._http.post<Recipe>(this._backendURL.allRecipe, recipe1, this._options());
+    return this._http.post<Recipe>(this._backendURL.allRecipe, recipe, this._options());
   }
 
   /**
