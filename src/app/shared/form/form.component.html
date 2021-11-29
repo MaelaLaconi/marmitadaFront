@@ -14,7 +14,7 @@
     <table class="full-width" cellspacing="0">
       <tr>
         <td>
-          <mat-form-field class="full-width">
+          <mat-form-field class="full-width" [class.mgb15]="productForm.get('recipeName')?.dirty && productForm.get('recipeName')?.invalid">
             Recipe name
             <input matInput placeholder="Recipe name" formControlName="recipeName" minlength="2" name="recipeName"/>
             <mat-error *ngIf="productForm.get('recipeName')?.dirty && productForm.get('recipeName')?.hasError('required')">
@@ -150,5 +150,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
-  <button mat-button color="primary" type="submit" (click)="submit()"  [disabled]="productForm.invalid" >Save</button>
+  <button mat-button color="primary" type="submit" (click)="submit(productForm.value)"  [disabled]="productForm.invalid" >Save</button>
 </mat-dialog-actions>

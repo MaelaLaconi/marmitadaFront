@@ -131,9 +131,9 @@ export class FormComponent implements OnInit, OnChanges {
   /**
    * Function to emit event to submit form and recipe
    */
-  submit(): void {
+  submit(recipe: Recipe): void {
     console.log(this._productForm.value);
-    this._submit$.emit(this._model);
+    this._submit$.emit(recipe);
   }
 
 
