@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
+  private _category : string[];
+  constructor() {
+    this._category=["salty", "sweet"];
+  }
 
-  constructor() { }
+  get category(): string[] {
+    return this._category;
+  }
 
   ngOnInit(): void {
   }

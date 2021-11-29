@@ -20,6 +20,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UpdateComponent } from './update/update.component';
 import {MatInputModule} from "@angular/material/input";
+import { CategoryComponent } from './category/category.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -30,25 +32,27 @@ import {MatInputModule} from "@angular/material/input";
     DialogComponent,
     FormComponent,
     UpdateComponent,
-    CardComponent
+    CardComponent,
+    CategoryComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatListModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatCardModule,
-        MatIconModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatListModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

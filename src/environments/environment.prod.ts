@@ -7,7 +7,8 @@ export const environment = {
     endpoints: {
       allRecipe: '/recipe',
       randomRecipe: '/recipe/random',
-      oneRecipe: '/recipes/:id'
+      oneRecipe: '/recipes/:id',
+      allRecipeCat:'/recipes/category/:category',
     }
   }
 };
