@@ -1,4 +1,9 @@
 <p>homepage works!</p>
-<span>
-    <a [routerLink]="['/category']">Seletionner une catégorie</a>
-</span>
+<h4>Selectionner une catégorie</h4>
+<mat-form-field appearance="fill">
+  <mat-label>Faîtes votre choix</mat-label>
+  <mat-select>
+    <mat-option  [routerLink]="['/category/'+categ]" *ngFor="let categ of category">{{categ}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
