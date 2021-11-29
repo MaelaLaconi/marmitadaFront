@@ -30,9 +30,12 @@ export class FormComponent implements OnInit, OnChanges {
 
     //this._productForm = this._buildForm();
     this._productForm = this._fb.group({
-      ingredients: this._fb.array([]) ,
+      ingredients: this._fb.array([]),
       steps: this._fb.array([]),
     });
+
+    this.addStep();
+    this.addIngredient();
 
     this._productForm.addControl('id', new FormControl());
     this._productForm.addControl('name', new FormControl('', Validators.compose([
@@ -54,16 +57,6 @@ export class FormComponent implements OnInit, OnChanges {
       Validators.required, Validators.minLength(2)
     ])));
 
-
-
-    /*
-    address: new FormGroup({
-        street: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
-        postalCode: new FormControl('', Validators.required)
-      }),
-     */
-
     this._productForm.addControl('difficulty',new FormControl('', Validators.required));
     this._productForm.addControl('cookingTime',new FormControl('', Validators.required));
     this._productForm.addControl('preparationTime',new FormControl('', Validators.required));
@@ -81,7 +74,7 @@ export class FormComponent implements OnInit, OnChanges {
     return this._isAddedStep;
   }
 
-  steps() : FormArray {
+  get steps() : FormArray {
     return this._productForm.get("steps") as FormArray
   }
 
@@ -93,25 +86,24 @@ export class FormComponent implements OnInit, OnChanges {
     ])));
     return this._fb.group({
       step: '',
-
     })
   }
 
   addStep() {
-    this.steps().push(this.newStep());
+    this.steps.push(this.newStep());
 
   }
 
   removeStep(i:number) {
-    if(this.steps().length == 0){
+    if(this.steps.length == 0){
       this._isAddedStep = false;
       this._productForm.removeControl('steps');
 
     }
-    this.steps().removeAt(i);
+    this.steps.removeAt(i);
   }
 
-  ingredients() : FormArray {
+  get ingredients() : FormArray {
     return this._productForm.get("ingredients") as FormArray
   }
 
@@ -119,27 +111,24 @@ export class FormComponent implements OnInit, OnChanges {
 
   newIngredient(): FormGroup {
     this._isAddedIngr = true;
-    this._productForm.addControl('ingredients',new FormControl('', Validators.compose([
+    this._productForm.addControl('ingredients', new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
     ])));
-    return this._fb.group({
-      ingredients: '',
-
-    })
+    return this._fb.group(new String(''))
   }
 
   addIngredient() {
-    this.ingredients().push(this.newIngredient());
+    this.ingredients.push(this.newIngredient());
   }
 
 
   removeIngredient(i:number) {
-    if(this.ingredients().length==0){
+    if(this.ingredients.length==0){
       this._isAddedIngr = false;
       this._productForm.removeControl('ingredients');
 
     }
-    this.ingredients().removeAt(i);
+    this.ingredients.removeAt(i);
   }
 
   /**
