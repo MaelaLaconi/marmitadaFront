@@ -10,7 +10,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 export class FormComponent implements OnInit, OnChanges {
 
   private _productForm: FormGroup;
-
+  private _isAddedStep : boolean;
+  private _isAddedIngr : boolean;
 
   // private property to store update mode flag
   private _isUpdateMode: boolean;
@@ -24,17 +25,46 @@ export class FormComponent implements OnInit, OnChanges {
 
 
   constructor(private _fb:FormBuilder) {
-    /*this._productForm = this._fb.group({
+    this._isAddedStep= false;
+    this._isAddedIngr = false;
+    //this._productForm = this._buildForm();
+    this._productForm = this._fb.group({
       ingredients: this._fb.array([]) ,
       steps: this._fb.array([]),
-    });*/
+    });
 
-    this._productForm = this._buildForm();
+    this._productForm.addControl('id', new FormControl());
+    this._productForm.addControl('name', new FormControl('', Validators.compose([
+      Validators.required, Validators.minLength(2)
+    ])));
+    this._productForm.addControl('firstname', new FormControl('', Validators.compose([
+      Validators.required, Validators.minLength(2)
+    ])));
+    this._productForm.addControl('lastname', new FormControl('', Validators.compose([
+      Validators.required, Validators.minLength(2)
+    ])));
+    this._productForm.addControl('description', new FormControl('', Validators.compose([
+      Validators.required, Validators.minLength(2)
+    ])));
+    this._productForm.addControl('pseudo', new FormControl('', Validators.compose([
+      Validators.required, Validators.minLength(2)
+    ])));
 
+    this._productForm.addControl('difficulty',new FormControl('', Validators.required));
+    this._productForm.addControl('cookingTime',new FormControl('', Validators.required));
+    this._productForm.addControl('preparationTime',new FormControl('', Validators.required));
     this._cancel$ = new EventEmitter<void>();
     this._submit$ = new EventEmitter<Recipe>();
     this._model = {} as Recipe;
     this._isUpdateMode = false;
+  }
+
+  get isAddedIngr(): boolean {
+    return this._isAddedIngr;
+  }
+
+  get isAddedStep(): boolean {
+    return this._isAddedStep;
   }
 
   steps() : FormArray {
@@ -42,6 +72,12 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   newStep(): FormGroup {
+    this._isAddedStep = true;
+    console.log("dans le new step "+this._isAddedStep)
+
+    this._productForm.addControl('steps',new FormControl('', Validators.compose([
+      Validators.required, Validators.minLength(2)
+    ])));
     return this._fb.group({
       step: '',
 
@@ -53,6 +89,12 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   removeStep(i:number) {
+    if(this.steps().length == 0){
+      this._isAddedStep = false;
+      console.log("dans le remove "+this._isAddedStep)
+      this._productForm.removeControl('steps');
+
+    }
     this.steps().removeAt(i);
   }
 
@@ -61,18 +103,28 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   newIngredient(): FormGroup {
+    this._isAddedIngr = true;
+    this._productForm.addControl('ingredients', new FormControl('', Validators.compose([
+      Validators.required, Validators.minLength(2)
+    ])));
     return this._fb.group({
-      ingr: '',
+      ingredient: '',
 
     })
   }
 
 
   addIngredient() {
+    console.log("dans le aaaaaaaaaaaadd")
     this.ingredients().push(this.newIngredient());
   }
 
   removeIngredient(i:number) {
+    if(this.ingredients().length==0){
+      this._isAddedIngr = false;
+      this._productForm.removeControl('ingredients');
+
+    }
     this.ingredients().removeAt(i);
   }
 
@@ -119,6 +171,7 @@ export class FormComponent implements OnInit, OnChanges {
    * OnInit implementation
    */
   ngOnInit(): void {
+
   }
 
   /**
@@ -196,4 +249,6 @@ export class FormComponent implements OnInit, OnChanges {
 
     });
   }
+
+
 }
