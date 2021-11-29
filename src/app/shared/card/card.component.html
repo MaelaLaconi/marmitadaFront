@@ -1,13 +1,12 @@
-<p>card works!</p>
 <section>
   <mat-card class="mat-whiteframe-2dp">
     <mat-card-title-group>
       <mat-card-title>
-        <a href="javascript:void(0);">
+        <a>
           <span>{{ recipe.name }}</span>
         </a>
       </mat-card-title>
-      <mat-card-subtitle>{{ recipe.description }}</mat-card-subtitle>
+      <mat-card-subtitle class="gray_text">{{ recipe.description }}</mat-card-subtitle>
       <mat-card-subtitle class="contact-info">
         <a href="Autheur:{{ recipe.author.firstname }} {{ recipe.author.lastname }}&lt;{{ recipe.author.pseudo }}&gt;" class="truncate"></a>
       </mat-card-subtitle>
@@ -16,15 +15,20 @@
     </mat-card-title-group>
     <mat-list>
       <h3 mat-subheader>Liste des ingrédients</h3>
-
-      <mat-list-item *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
+      <mat-list-item class="items_list" *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
     </mat-list>
 
     <mat-list>
-      <h3 mat-subheader>Steps</h3>
-
-      <mat-list-item *ngFor="let step of recipe.steps;let indexOfelement=index;"> Step {{indexOfelement}} : {{step}} </mat-list-item>
+      <h3 mat-subheader>Etapes à suivre</h3>
+      <mat-list-item class="items_list" *ngFor="let step of recipe.steps;let indexOfelement=index;"><u>Step {{indexOfelement}}</u> : {{step}} </mat-list-item>
     </mat-list>
+    <hr>
+    <mat-card-content>
+      Difficulté: {{recipe.difficulty}},
+      Temps de préparation: {{recipe.preparationTime}},
+      Temps de cuisson: {{recipe.cookingTime}}
+    </mat-card-content>
+
     <mat-card-content>
       <div class="buttons-info">
         <button mat-button title="Delete" (click)="delete(recipe)">
