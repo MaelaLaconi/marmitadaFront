@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CookbookService} from "../shared/services/cookbook.service";
+import {Recipe} from "../recipe/recipe.type";
 
 @Component({
   selector: 'app-homepage',
@@ -6,17 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-  private _category : string[];
-  constructor() {
-    this._category=["salty", "sweet"];
+  private _category : String[];
+  constructor(private _cookbookService: CookbookService) {
+    this._category=[];
   }
 
-  get category(): string[] {
+  get category(): String[] {
     return this._category;
   }
 
   ngOnInit(): void {
-
+    this._cookbookService
+      .fetchAllCategory()
+      .subscribe({ next: (recipe: String[]) => this._category = recipe });
   }
 
 }

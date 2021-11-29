@@ -14,7 +14,7 @@ export const environment = {
       randomRecipe: '/recipes/random',
       oneRecipe: '/recipes/:id',
       allRecipeCat:'/recipes/category/:category',
-      allCateg:'/recipes/category',
+      allCateg:'/recipes/categories',
     }
   }
 };
