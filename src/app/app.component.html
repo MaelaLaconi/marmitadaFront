@@ -1,8 +1,10 @@
 <mat-toolbar class="extend-toolbar">
   <span>
-    <a href="javascript:void(0);">
-      <!--<img src="assets/images/logo.svg" aria-label="nwt" alt="NWT">-->
-    </a>
+    <a [routerLink]="['/recipe']">Découvrir une recette</a>
+  </span>
+
+  <span class="button-center" >
+    <a [routerLink]="['/cookbook']">Voir toutes les recettes</a>
   </span>
 
   <span class="flex"></span>
@@ -13,18 +15,14 @@
 </mat-toolbar>
 
 <mat-card align="center">
-  Hello {{ title }}
+
+
+  <span class="flex"></span>
+
+
+
 </mat-card>
 
-<span>
-  <a [routerLink]="['/recipe']">Découvrir une recette</a>
-</span>
-
-<span class="flex"></span>
-
-<span>
-    <a [routerLink]="['/cookbook']">Voir toutes les recettes</a>
-</span>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
