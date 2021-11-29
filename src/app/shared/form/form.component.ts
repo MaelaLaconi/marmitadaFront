@@ -199,20 +199,7 @@ export class FormComponent implements OnInit, OnChanges {
    * Function to emit event to submit form and recipe
    */
   submit(recipe: Recipe): void {
-    console.log(this._productForm.value);
-    console.log("dans submit"+ recipe.name);
-    console.log("dans submit"+ recipe.description);
-    console.log("dans submit"+ recipe.author.pseudo);
-    console.log("dans submit"+ recipe.author.firstname);
-    console.log("dans submit"+ recipe.author.lastname);
-    console.log("dans submit"+ recipe.ingredients[0]);
-    console.log("dans submit"+ recipe.steps[1]);
-    console.log("dans submit"+ recipe.difficulty);
-    console.log("dans submit"+ recipe.preparationTime);
-    console.log("dans submit"+ recipe.cookingTime);
-    console.log("dans submit"+ recipe.id);
-
-    this._submit$.emit(recipe);
+      this._submit$.emit(recipe);
   }
 
 

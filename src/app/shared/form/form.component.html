@@ -89,7 +89,7 @@
             <div class="row" *ngIf="isAddedIngr">
               <div class="col s12">
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Ingredients" name="ingredients" formControlName="ingredients" minlength="2" required>
+                  <input matInput type="text" placeholder="Ingredients" name="ingredients" formControlName="ingredients" minlength="2" required>
                   <mat-error *ngIf="productForm.get('ingredients')?.dirty && productForm.get('ingredients')?.hasError('required')">
                     Ingredient is <strong>required</strong>
                   </mat-error>
@@ -123,7 +123,7 @@
           <div class="row" *ngIf="isAddedStep">
             <div class="col s12">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Step" name="step" formControlName="step" minlength="2" required>
+                <input matInput type="text" placeholder="Step" name="step" formControlName="step" minlength="2" required>
                 <mat-error *ngIf="productForm.get('step')?.dirty && productForm.get('step')?.hasError('required')">
                   Step is <strong>required</strong>
                 </mat-error>

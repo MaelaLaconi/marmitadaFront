@@ -92,8 +92,26 @@ export class CookbookService {
     console.log("dans create"+ recipe.preparationTime);
     console.log("dans create"+ recipe.cookingTime);
     console.log("dans create"+ recipe.id);
+    console.log("JSON.stringify(obj)"+ JSON.stringify(recipe.steps));
 
-    return this._http.post<Recipe>(this._backendURL.allRecipe, recipe, this._options());
+    const recipe1 : Recipe = {
+
+      'name': recipe.name,
+      'description': recipe.description,
+      'author': {
+      'pseudo': recipe.author.pseudo
+    },
+      'ingredients': [
+        recipe.ingredients[0],
+      ],
+      'steps': [
+        recipe.steps[0],
+    ],
+      'difficulty': recipe.difficulty,
+      'preparationTime': recipe.preparationTime,
+      'cookingTime': recipe.cookingTime,
+    };
+    return this._http.post<Recipe>(this._backendURL.allRecipe, recipe1, this._options());
   }
 
   /**
