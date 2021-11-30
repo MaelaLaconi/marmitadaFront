@@ -60,4 +60,9 @@ export class HomepageComponent implements OnInit {
 
     return this._options.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+  research(name: string): void {
+    console.log("nom = "+name);
+
+  }
 }
