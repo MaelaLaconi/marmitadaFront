@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { Recipe} from "../../recipe/recipe.type";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {CustomValidators} from "./custom-validators";
 
 @Component({
   selector: 'app-form',
@@ -31,7 +32,8 @@ export class FormComponent implements OnInit, OnChanges {
     this._productForm = this._fb.group({
       id: new FormControl(),
       name: new FormControl('', Validators.compose([
-          Validators.required, Validators.minLength(2)
+          Validators.required, Validators.minLength(2),
+          CustomValidators.firstLetterUpper
         ])),
       description: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(2)
