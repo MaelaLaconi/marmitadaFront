@@ -22,6 +22,9 @@ import { UpdateComponent } from './update/update.component';
 import {MatInputModule} from "@angular/material/input";
 import { CategoryComponent } from './category/category.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { ResearchComponent } from './research/research.component';
 
 @NgModule({
   declarations: [
@@ -33,26 +36,29 @@ import {MatSelectModule} from "@angular/material/select";
     FormComponent,
     UpdateComponent,
     CardComponent,
-    CategoryComponent
+    CategoryComponent,
+    ResearchComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatListModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatIconModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatListModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatIconModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatButtonToggleModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ import {CookbookComponent} from "./cookbook/cookbook.component";
 import {RecipeComponent} from "./recipe/recipe.component";
 import {UpdateComponent} from "./update/update.component";
 import {CategoryComponent} from "./category/category.component";
+import {ResearchComponent} from "./research/research.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,8 +13,8 @@ const routes: Routes = [
   { path: 'recipe', component: RecipeComponent },
   { path: 'cookbook', component: CookbookComponent },
   { path: 'edit/:id', component: UpdateComponent },
-  { path: 'category/:category', component: CategoryComponent}
-
+  { path: 'category/:category', component: CategoryComponent},
+  { path: 'research/:name', component: ResearchComponent}
 
 ];
 

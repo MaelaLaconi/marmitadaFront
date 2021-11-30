@@ -1,3 +1,22 @@
+
+<mat-form-field class="example-form">
+  <mat-label>Effectuer une recherche</mat-label>
+  <mat-form-field class="example-full-width" appearance="fill" [floatLabel]="'never'">
+    <input type="text"
+           placeholder="rechercher"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</mat-form-field>
+
+<button mat-button type="button" [routerLink]="['/research/'+myControl.value]" >Rechercher</button>
+
 <h3>Selectionner une catégorie</h3>
 <mat-form-field appearance="fill">
   <mat-label class="choice">Faîtes votre choix</mat-label>

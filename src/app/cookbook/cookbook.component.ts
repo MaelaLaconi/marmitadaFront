@@ -3,7 +3,7 @@ import {Recipe} from "../recipe/recipe.type";
 import {CookbookService} from "../shared/services/cookbook.service";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import {filter, map, mergeMap, tap} from "rxjs/operators";
+import {filter, map, mergeMap} from "rxjs/operators";
 import {Observable} from "rxjs";
 
 @Component({
@@ -79,54 +79,11 @@ export class CookbookComponent implements OnInit {
       });
   }
 
-  /*showDialog(): void {
-    // set dialog status
-    this._dialogStatus = 'active';
-
-    // open modal
-    this._cookbookDialog = this._dialog.open(DialogComponent, {
-      width: '500px',
-      disableClose: true
-    });
-
-    // subscribe to afterClosed observable to set dialog status and do process
-    this._cookbookDialog.afterClosed()
-      .pipe(
-        filter((recipe: Recipe | undefined) => !!recipe),
-        map((recipe: Recipe | undefined) => {
-          // delete obsolete attributes in original object which are not required in the API
-          /*delete person?.id;
-          delete person?.photo;
-*/
-
-       /*   return recipe;
-        }),
-        mergeMap((recipe: Recipe | undefined) => this._add(recipe))
-      )
-      .subscribe({
-        next: (recipe: Recipe) => this._cookbook = this._cookbook.concat(recipe),
-        error: () => this._dialogStatus = 'inactive',
-        complete: () => this._dialogStatus = 'inactive'
-      });
-  }
 
   /**
    * Add new person
    */
   private _add(recipe: Recipe | undefined): Observable<Recipe> {
-    // console.log("recipe.name : "+ recipe?.name);
-    // console.log("recipe.description : "+ recipe?.description);
-    // console.log("recipe.author.pseudo : "+ recipe?.author.pseudo);
-    // console.log("recipe.author.firstname : "+ recipe?.author.firstname);
-    // console.log("recipe.author.lastname : "+ recipe?.author.lastname);
-    // console.log("recipe.ingredients[0] : "+ recipe?.ingredients[0]);
-    // console.log("recipe.steps[0] : "+ recipe?.steps[0]);
-    // console.log("recipe.difficulty : "+ recipe?.difficulty);
-    // console.log("recipe.preparationTime : "+ recipe?.preparationTime);
-    // console.log("recipe.cookingTime : "+ recipe?.cookingTime);
-    // console.log("recipe.id : "+ recipe?.id);
-    // console.log("JSON.stringify(obj) : "+ JSON.stringify(recipe).toString());
-
     return this._cookbookService.create(recipe as Recipe);
   }
 }
