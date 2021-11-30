@@ -15,6 +15,8 @@ export const environment = {
       oneRecipe: '/recipes/:id',
       allRecipeCat:'/recipes/category/:category',
       allCateg:'/recipes/categories',
+      allNames:'/recipes/names',
+
     }
   }
 };

@@ -86,7 +86,7 @@ export class CookbookService {
   }
 
   /**
-   * Function to return list of recipe by category
+   * Function to return list of string category
    */
   fetchAllCategory(): Observable<String[]>  {
     return this._http.get<String[]>(this._backendURL.allCateg)
@@ -95,6 +95,17 @@ export class CookbookService {
         defaultIfEmpty([] as String[])
       );
   }
+  /**
+   * Function to return list of recipe by category
+   */
+  fetchAllNames(): Observable<String[]>  {
+    return this._http.get<String[]>(this._backendURL.allNames)
+      .pipe(
+        filter((recipes: String[]) => !!recipes),
+        defaultIfEmpty([] as String[])
+      );
+  }
+
 
 
   get defautltRecipe(): Recipe {
