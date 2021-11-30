@@ -3,6 +3,8 @@ export type Recipe = {
   id?: string;
   // Nom du plat
   name: string;
+  //categorie de la recette
+  category: string;
   // Description du plat
   description: string;
   // Auteur de la recette

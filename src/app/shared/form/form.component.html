@@ -27,6 +27,16 @@
             </mat-error>
           </mat-form-field>
 
+          <mat-form-field class="full-width" [class.mgb15]="productForm.get('category')?.dirty && productForm.get('category')?.invalid" [floatLabel]="'never'">
+            <input matInput placeholder="Categorie" name="category"  formControlName="category" minlength="2" required/>
+            <mat-error *ngIf="productForm.get('category')?.dirty && productForm.get('category')?.hasError('required')">
+              Category is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="productForm.get('category')?.dirty && productForm.get('category')?.hasError('minlength')">
+              Category is <strong>2 chars min</strong>
+            </mat-error>
+          </mat-form-field>
+
           <p formGroupName="author">
             <mat-form-field class="full-width" [class.mgb15]="productForm.get('pseudo')?.dirty && productForm.get('pseudo')?.invalid" [floatLabel]="'never'">
               <input matInput placeholder="Auteur" formControlName="pseudo" required name="pseudo"/>
