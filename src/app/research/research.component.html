@@ -1,3 +1,9 @@
-<section>
-  <app-card [recipe]="recipe" *ngFor="let recipe of recipes"></app-card>
-</section>
+<mat-card-content [ngSwitch]="recipes.length">
+  <section *ngSwitchCase="0">
+    <h1>Il n'existe aucune recette avec ce nom, voulez-vous la créer ?</h1>
+  </section>
+  <section *ngSwitchDefault>
+    <app-card  [recipe]="recipe" *ngFor="let recipe of recipes"></app-card>
+  </section>
+</mat-card-content>
+
