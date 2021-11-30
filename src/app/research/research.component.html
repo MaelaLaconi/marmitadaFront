@@ -1,7 +1,14 @@
 <mat-card-content [ngSwitch]="recipes.length">
   <section *ngSwitchCase="0">
     <h1>Il n'existe aucune recette avec ce nom, voulez-vous la créer ?</h1>
+
+    <section class="buttons-fab" *ngIf="dialogStatus === 'inactive'">
+      <button (click)="showDialog()" mat-fab color="accent" class="button-add">
+        <i class="material-icons">add</i>
+      </button>
+    </section>
   </section>
+
   <section *ngSwitchDefault>
     <app-card  [recipe]="recipe" *ngFor="let recipe of recipes"></app-card>
   </section>

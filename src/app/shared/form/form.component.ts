@@ -36,6 +36,9 @@ export class FormComponent implements OnInit, OnChanges {
       description: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(2)
       ])),
+      category: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
       author: new FormGroup({
         pseudo: new FormControl('', Validators.compose([
           Validators.required, Validators.minLength(2)
@@ -219,6 +222,7 @@ export class FormComponent implements OnInit, OnChanges {
     // console.log("dans le submit + "+ Object.values(recipe.steps))
     const recipe1 : Recipe = {
       'name': recipe.name,
+      'category':recipe.category,
       'description': recipe.description,
       'author': recipe.author,
       'ingredients': this.ingredientsArray(),
@@ -243,6 +247,7 @@ export class FormComponent implements OnInit, OnChanges {
       this._model = {
         id: '',
         name: '',
+        category: '',
         description: '',
         author: {
           pseudo: '',
