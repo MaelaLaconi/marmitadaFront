@@ -51,7 +51,6 @@ import {MatGridListModule} from "@angular/material/grid-list";
         MatCardModule,
         MatIconModule,
         MatDialogModule,
-        MatFormFieldModule,
         FormsModule,
         MatFormFieldModule,
         MatInputModule,

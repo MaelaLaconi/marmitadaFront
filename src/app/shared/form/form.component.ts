@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import { Recipe} from "../../recipe/recipe.type";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Author} from "../../recipe/author.type";
-import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-form',
@@ -59,8 +58,8 @@ export class FormComponent implements OnInit, OnChanges {
       preparationTime: new FormControl('', Validators.required),
     });
 
-    this.addStep();
-    this.addIngredient();
+    // this.addStep();
+    // this.addIngredient();
 
     //
     // this._productForm.addControl('id', new FormControl());
@@ -142,6 +141,7 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   get ingredients() : FormArray {
+    // console.log(this._productForm.get('ingredients'));
     return this._productForm.get('ingredients') as FormArray;
   }
 
@@ -223,6 +223,7 @@ export class FormComponent implements OnInit, OnChanges {
 
     // console.log("dans le submit + "+ Object.values(recipe.steps))
     const recipe1 : Recipe = {
+      'id': recipe.id,
       'name': recipe.name,
       'category': recipe.category,
       'description': recipe.description,
@@ -249,6 +250,8 @@ export class FormComponent implements OnInit, OnChanges {
   ngOnChanges(record: any): void {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
+      //console.log(this._model.steps);
+      //console.log(this._model.ingredients);
       this._isUpdateMode = true;
     } else {
       this._model = {
@@ -267,6 +270,24 @@ export class FormComponent implements OnInit, OnChanges {
       };
       this._isUpdateMode = false;
     }
+
+    this._model.ingredients.forEach((value) => {
+      this._isAddedIngr = true;
+      this.ingredients.push(
+        this._fb.group({
+            ingredient: value,
+          }
+        ));
+    });
+    this._model.steps.forEach((value) => {
+      this._isAddedStep = true;
+      this.steps.push(
+        this._fb.group({
+            step: value,
+          }
+        ));
+    });
+    this._productForm.patchValue(this._model);
   }
 
   /**
