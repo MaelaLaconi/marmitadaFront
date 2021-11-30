@@ -7,7 +7,7 @@ import {Recipe} from "../types/recipe.type";
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  //private property to store recipe value
+  // private property to store recipe value
   private _recipe: Recipe;
 
   // private property to store delete$ value
@@ -21,7 +21,6 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 
   get recipe(): Recipe {
     return this._recipe;
@@ -48,5 +47,4 @@ export class CardComponent implements OnInit {
   delete(recipe: Recipe): void {
     this._delete$.emit(recipe);
   }
-
 }

@@ -37,7 +37,6 @@ export class ResearchComponent implements OnInit {
     ).subscribe({ next: (recipe: Recipe[]) => this._recipes = recipe });
   }
 
-
   /**
    * Returns private property _dialogStatus
    */

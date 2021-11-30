@@ -29,7 +29,6 @@ export class FormComponent implements OnInit, OnChanges {
     this._isAddedStep= false;
     this._isAddedIngr = false;
 
-    //this._productForm = this._buildForm();
     this._productForm = this._fb.group({
       id: new FormControl(),
       name: new FormControl('', Validators.compose([
@@ -59,34 +58,6 @@ export class FormComponent implements OnInit, OnChanges {
       cookingTime: new FormControl('', Validators.required),
       preparationTime: new FormControl('', Validators.required),
     });
-
-    // this.addStep();
-    // this.addIngredient();
-
-    //
-    // this._productForm.addControl('id', new FormControl());
-    // this._productForm.addControl('name', new FormControl('', Validators.compose([
-    //   Validators.required, Validators.minLength(2)
-    // ])));
-    // this._productForm.addControl('author', new FormGroup({
-    //   pseudo: new FormControl('', Validators.compose([
-    //       Validators.required, Validators.minLength(2)
-    //     ])),
-    //   firstname: new FormControl('', Validators.compose([
-    //       Validators.required, Validators.minLength(2)
-    //     ])),
-    //   lastname: new FormControl('', Validators.compose([
-    //     Validators.required, Validators.minLength(2)
-    //   ]))
-    // }));
-    //
-    // this._productForm.addControl('description', new FormControl('', Validators.compose([
-    //   Validators.required, Validators.minLength(2)
-    // ])));
-    //
-    // this._productForm.addControl('difficulty',new FormControl('', Validators.required));
-    // this._productForm.addControl('cookingTime',new FormControl('', Validators.required));
-    // this._productForm.addControl('preparationTime',new FormControl('', Validators.required));
 
     this._cancel$ = new EventEmitter<void>();
     this._submit$ = new EventEmitter<Recipe>();
@@ -222,7 +193,6 @@ export class FormComponent implements OnInit, OnChanges {
    */
   submit(recipe: Recipe): void {
 
-    // console.log("dans le submit + "+ Object.values(recipe.steps))
     const recipe1 : Recipe = {
       'id': recipe.id,
       'name': recipe.name,
@@ -230,12 +200,11 @@ export class FormComponent implements OnInit, OnChanges {
       'description': recipe.description,
       'author': this._getAuthor(recipe.author),
       'ingredients': this.ingredientsArray(),
-      'steps': this.stepsArray()/*.map(value => value.step)*/,
+      'steps': this.stepsArray(),
       'difficulty': recipe.difficulty,
       'preparationTime': recipe.preparationTime,
       'cookingTime': recipe.cookingTime,
     };
-    console.log(recipe1);
     this._submit$.emit(recipe1);
   }
 
@@ -322,6 +291,4 @@ export class FormComponent implements OnInit, OnChanges {
 
     });
   }
-
-
 }

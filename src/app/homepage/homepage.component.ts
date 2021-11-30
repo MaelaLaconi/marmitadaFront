@@ -36,7 +36,6 @@ export class HomepageComponent implements OnInit {
     return this._myControl;
   }
 
-
   get filteredOptions(): Observable<String[]> | undefined {
     return this._filteredOptions;
   }
@@ -45,7 +44,6 @@ export class HomepageComponent implements OnInit {
     this._cookbookService
       .fetchAllCategory()
       .subscribe({ next: (recipe: String[]) => this._category = recipe });
-
 
     this._cookbookService
       .fetchAllNames()
@@ -62,9 +60,6 @@ export class HomepageComponent implements OnInit {
 
     return this._options.filter(option => option.toLowerCase().includes(filterValue));
   }
-
-
-
 
   get recipes(): Recipe[] {
     return this._recipes;

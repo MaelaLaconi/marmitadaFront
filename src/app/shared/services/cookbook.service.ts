@@ -54,8 +54,6 @@ export class CookbookService {
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
   }
 
-
-
   /**
    * Function to return list of recipe
    */
@@ -73,7 +71,6 @@ export class CookbookService {
   fetchOne(id: string): Observable<Recipe> {
     return this._http.get<Recipe>(this._backendURL.oneRecipe.replace(':id', id));
   }
-
 
   /**
    * Function to return list of recipe by category
@@ -107,6 +104,7 @@ export class CookbookService {
         defaultIfEmpty([] as String[])
       );
   }
+
   /**
    * Function to return list of recipe by category
    */
@@ -156,6 +154,7 @@ export class CookbookService {
         map(() => id)
       );
   }
+
   /**
    * Function to return request options
    */
@@ -173,5 +172,4 @@ export class CookbookService {
         defaultIfEmpty(this._defautltRecipe)
       );
   }
-
 }

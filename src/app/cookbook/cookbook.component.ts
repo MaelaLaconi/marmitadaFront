@@ -14,9 +14,7 @@ import {Observable} from "rxjs";
 export class CookbookComponent implements OnInit {
   private _cookbook: Recipe[];
   private _sortValue: string;
-  // private property to store dialogStatus value
   private _dialogStatus: string;
-  // private property to store dialog reference
   private _cookbookDialog: MatDialogRef<DialogComponent, Recipe> | undefined;
 
   private _view: string; //pour plus tard si on veut switch de vue
@@ -27,9 +25,6 @@ export class CookbookComponent implements OnInit {
     this._view= 'list';
     this._sortValue='name';
     }
-
-
-
 
   ngOnInit(): void {
     this._cookbookService
@@ -92,7 +87,6 @@ export class CookbookComponent implements OnInit {
         complete: () => this._dialogStatus = 'inactive'
       });
   }
-
 
   /**
    * Add new person

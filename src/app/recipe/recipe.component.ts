@@ -18,7 +18,6 @@ export class RecipeComponent implements OnInit {
     this._isRecipe=false;
   }
 
-
   get isRecipe() {
     return this._isRecipe;
   }
@@ -38,6 +37,7 @@ export class RecipeComponent implements OnInit {
         }
       });
   }
+
   get recipe(): any {
     return this._recipe;
   }
