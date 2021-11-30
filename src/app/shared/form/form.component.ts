@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { Recipe} from "../../recipe/recipe.type";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Author} from "../../recipe/author.type";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-form',
@@ -222,9 +224,9 @@ export class FormComponent implements OnInit, OnChanges {
     // console.log("dans le submit + "+ Object.values(recipe.steps))
     const recipe1 : Recipe = {
       'name': recipe.name,
-      'category':recipe.category,
+      'category': recipe.category,
       'description': recipe.description,
-      'author': recipe.author,
+      'author': this._getAuthor(recipe.author),
       'ingredients': this.ingredientsArray(),
       'steps': this.stepsArray()/*.map(value => value.step)*/,
       'difficulty': recipe.difficulty,
@@ -233,6 +235,11 @@ export class FormComponent implements OnInit, OnChanges {
     };
     console.log(recipe1);
     this._submit$.emit(recipe1);
+  }
+
+  private _getAuthor(author: Author): Author {
+    if(!!author.lastname && !!author.firstname) return author;
+    return {pseudo: author.pseudo} as Author;
   }
 
   get productForm(): FormGroup {

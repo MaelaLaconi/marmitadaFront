@@ -1,3 +1,5 @@
+import {Author} from "./author.type";
+
 export type Recipe = {
   //id
   id?: string;
@@ -8,11 +10,7 @@ export type Recipe = {
   // Description du plat
   description: string;
   // Auteur de la recette
-  author: {
-    firstname?: string,
-    lastname?: string,
-    pseudo: string,
-  };
+  author: Author;
   // Liste des ingrédients
   ingredients: string[];
   // Liste d'étapes pour mener à bien cette recette
