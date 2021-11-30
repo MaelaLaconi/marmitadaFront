@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import { Recipe} from "../../recipe/recipe.type";
+import { Recipe} from "../types/recipe.type";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Author} from "../../recipe/author.type";
+import {Author} from "../types/author.type";
 
 @Component({
   selector: 'app-form',

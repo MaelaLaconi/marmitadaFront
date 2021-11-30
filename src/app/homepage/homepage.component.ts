@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CookbookService} from "../shared/services/cookbook.service";
-import {Recipe} from "../recipe/recipe.type";
+import {Recipe} from "../shared/types/recipe.type";
 import {FormControl} from "@angular/forms";
-import {filter, map, mergeMap, startWith, tap} from "rxjs/operators";
-import {Observable, pipe} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-homepage',

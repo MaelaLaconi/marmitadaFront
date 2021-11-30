@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Recipe} from "../../recipe/recipe.type";
+import {Recipe} from "../types/recipe.type";
 
 @Component({
   selector: 'app-card',

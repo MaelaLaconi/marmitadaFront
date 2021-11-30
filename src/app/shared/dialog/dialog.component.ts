@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit, Optional} from '@angular/core';
-import { Recipe} from "../../recipe/recipe.type";
+import { Recipe} from "../types/recipe.type";
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({

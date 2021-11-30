@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {RECIPES} from "../_static/_recipes";
 import {filter, mergeMap, tap} from "rxjs/operators";
 import {CookbookService} from "../shared/services/cookbook.service";
 import {ActivatedRoute} from "@angular/router";
-import {Recipe} from "./recipe.type";
+import {Recipe} from "../shared/types/recipe.type";
 
 @Component({
   selector: 'app-recipe',

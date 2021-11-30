@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DialogComponent} from "../shared/dialog/dialog.component";
-import {Recipe} from "../recipe/recipe.type";
+import {Recipe} from "../shared/types/recipe.type";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CookbookService} from "../shared/services/cookbook.service";
 import {filter, map, mergeMap} from "rxjs/operators";

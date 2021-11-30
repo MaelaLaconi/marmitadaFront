@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Recipe} from "../recipe/recipe.type";
+import {Recipe} from "../shared/types/recipe.type";
 import {CookbookService} from "../shared/services/cookbook.service";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import {filter, map, mergeMap} from "rxjs/operators";
+import {filter, mergeMap} from "rxjs/operators";
 import {Observable} from "rxjs";
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Recipe} from "../recipe/recipe.type";
+import {Recipe} from "../shared/types/recipe.type";
 import {filter, map, mergeMap, tap} from "rxjs/operators";
 import {CookbookService} from "../shared/services/cookbook.service";
 import {ActivatedRoute} from "@angular/router";
