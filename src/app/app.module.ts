@@ -25,6 +25,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { ResearchComponent } from './research/research.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ResearchComponent } from './research/research.component';
         ReactiveFormsModule,
         MatSelectModule,
         MatAutocompleteModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatGridListModule
     ],
   providers: [],
   bootstrap: [AppComponent]
