@@ -26,6 +26,9 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { ResearchComponent } from './research/research.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -40,27 +43,30 @@ import {MatGridListModule} from "@angular/material/grid-list";
     CategoryComponent,
     ResearchComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatListModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatCardModule,
-        MatIconModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatAutocompleteModule,
-        MatButtonToggleModule,
-        MatGridListModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatListModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatButtonToggleModule,
+    MatGridListModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    MatRadioModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -17,6 +17,7 @@ export const environment = {
       allCateg:'/recipes/categories',
       allNames:'/recipes/names',
       allRecipeName:'/recipes/name/:name',
+      tri:'/recipes/tris/:sortMethod',
 
     }
   }
