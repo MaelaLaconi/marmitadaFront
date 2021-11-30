@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CookbookService} from "../shared/services/cookbook.service";
 import {Recipe} from "../recipe/recipe.type";
 import {FormControl} from "@angular/forms";
-import {map, startWith} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {filter, map, mergeMap, startWith, tap} from "rxjs/operators";
+import {Observable, pipe} from "rxjs";
 
 @Component({
   selector: 'app-homepage',
@@ -16,10 +16,12 @@ export class HomepageComponent implements OnInit {
   private _options : String[];
   private _myControl = new FormControl();
   private _filteredOptions: Observable<String[]> | undefined;
+  private _recipes: Recipe[];
 
   constructor(private _cookbookService: CookbookService) {
     this._category=[];
     this._options=[];
+    this._recipes=[];
   }
 
   get options(): String[] {
@@ -61,8 +63,10 @@ export class HomepageComponent implements OnInit {
     return this._options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  research(name: string): void {
-    console.log("nom = "+name);
 
+
+
+  get recipes(): Recipe[] {
+    return this._recipes;
   }
 }

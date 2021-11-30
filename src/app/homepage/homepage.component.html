@@ -4,7 +4,6 @@
   <mat-form-field class="example-full-width" appearance="fill" [floatLabel]="'never'">
     <input type="text"
            placeholder="rechercher"
-
            matInput
            [formControl]="myControl"
            [matAutocomplete]="auto">
@@ -16,7 +15,11 @@
   </mat-form-field>
 </mat-form-field>
 
-<button mat-button type="button" [routerLink]="['/category/']" >Recherche</button>
+
+<!--<span>
+    <a [routerLink]="['/research/'+myControl.value.name]">Recherche</a>
+</span>-->
+
 
 <h3>Selectionner une catégorie</h3>
 <mat-form-field appearance="fill">

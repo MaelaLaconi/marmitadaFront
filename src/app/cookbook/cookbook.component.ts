@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Recipe} from "../recipe/recipe.type";
 import {CookbookService} from "../shared/services/cookbook.service";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -79,43 +79,11 @@ export class CookbookComponent implements OnInit {
       });
   }
 
-  /*showDialog(): void {
-    // set dialog status
-    this._dialogStatus = 'active';
-
-    // open modal
-    this._cookbookDialog = this._dialog.open(DialogComponent, {
-      width: '500px',
-      disableClose: true
-    });
-
-    // subscribe to afterClosed observable to set dialog status and do process
-    this._cookbookDialog.afterClosed()
-      .pipe(
-        filter((recipe: Recipe | undefined) => !!recipe),
-        map((recipe: Recipe | undefined) => {
-          // delete obsolete attributes in original object which are not required in the API
-          /*delete person?.id;
-          delete person?.photo;
-*/
-
-       /*   return recipe;
-        }),
-        mergeMap((recipe: Recipe | undefined) => this._add(recipe))
-      )
-      .subscribe({
-        next: (recipe: Recipe) => this._cookbook = this._cookbook.concat(recipe),
-        error: () => this._dialogStatus = 'inactive',
-        complete: () => this._dialogStatus = 'inactive'
-      });
-  }
 
   /**
    * Add new person
    */
   private _add(recipe: Recipe | undefined): Observable<Recipe> {
-    console.log("dans le add")
-    
     return this._cookbookService.create(recipe as Recipe);
   }
 }

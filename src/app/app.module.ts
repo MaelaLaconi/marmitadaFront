@@ -24,6 +24,7 @@ import { CategoryComponent } from './category/category.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { ResearchComponent } from './research/research.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     FormComponent,
     UpdateComponent,
     CardComponent,
-    CategoryComponent
+    CategoryComponent,
+    ResearchComponent
   ],
     imports: [
         BrowserModule,
