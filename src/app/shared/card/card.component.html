@@ -2,15 +2,12 @@
   <mat-card class="mat-whiteframe-2dp">
     <mat-card-title-group>
       <mat-card-title>
-        <a>
-          <span>{{ recipe.name }}</span>
-        </a>
+        <span>{{ recipe.name }}</span>
       </mat-card-title>
       <mat-card-subtitle class="gray_text">{{ recipe.description }}</mat-card-subtitle>
       <mat-card-subtitle class="contact-info">
-        <a href="Autheur:{{ recipe.author.firstname }} {{ recipe.author.lastname }}&lt;{{ recipe.author.pseudo }}&gt;" class="truncate"></a>
+        Par : {{ recipe.author.firstname }} &lt;{{ recipe.author.pseudo }}&gt; {{ recipe.author.lastname }}
       </mat-card-subtitle>
-
 
     </mat-card-title-group>
     <mat-list>

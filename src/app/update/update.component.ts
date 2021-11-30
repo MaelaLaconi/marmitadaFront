@@ -25,8 +25,6 @@ export class UpdateComponent implements OnInit {
       .subscribe((recipe: Recipe) => this._initModal(recipe));
   }
 
-
-
   /**
    * Initialize modal process
    */
