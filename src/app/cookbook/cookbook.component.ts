@@ -3,7 +3,7 @@ import {Recipe} from "../recipe/recipe.type";
 import {CookbookService} from "../shared/services/cookbook.service";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import {filter, map, mergeMap} from "rxjs/operators";
+import {filter, map, mergeMap, tap} from "rxjs/operators";
 import {Observable} from "rxjs";
 
 @Component({
@@ -114,8 +114,19 @@ export class CookbookComponent implements OnInit {
    * Add new person
    */
   private _add(recipe: Recipe | undefined): Observable<Recipe> {
-    console.log("dans le add")
-    
+    // console.log("recipe.name : "+ recipe?.name);
+    // console.log("recipe.description : "+ recipe?.description);
+    // console.log("recipe.author.pseudo : "+ recipe?.author.pseudo);
+    // console.log("recipe.author.firstname : "+ recipe?.author.firstname);
+    // console.log("recipe.author.lastname : "+ recipe?.author.lastname);
+    // console.log("recipe.ingredients[0] : "+ recipe?.ingredients[0]);
+    // console.log("recipe.steps[0] : "+ recipe?.steps[0]);
+    // console.log("recipe.difficulty : "+ recipe?.difficulty);
+    // console.log("recipe.preparationTime : "+ recipe?.preparationTime);
+    // console.log("recipe.cookingTime : "+ recipe?.cookingTime);
+    // console.log("recipe.id : "+ recipe?.id);
+    // console.log("JSON.stringify(obj) : "+ JSON.stringify(recipe).toString());
+
     return this._cookbookService.create(recipe as Recipe);
   }
 }

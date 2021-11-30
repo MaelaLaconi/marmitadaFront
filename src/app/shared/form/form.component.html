@@ -40,10 +40,7 @@
             <tr>
               <td>
                 <mat-form-field class="full-width" [class.mgb15]="productForm.get('firstname')?.dirty && productForm.get('firstname')?.invalid" [floatLabel]="'never'">
-                  <input matInput placeholder="Prénom" name="firstname"  formControlName="firstname" minlength="2" required/>
-                  <mat-error *ngIf="productForm.get('author')?.get('firstname')?.dirty && productForm.get('author')?.get('firstname')?.hasError('required')">
-                    Firstname is <strong>required</strong>
-                  </mat-error>
+                  <input matInput placeholder="Prénom" name="firstname"  formControlName="firstname" minlength="2"/>
                   <mat-error *ngIf="productForm.get('author')?.get('firstname')?.dirty && productForm.get('author')?.get('firstname')?.hasError('minlength')">
                     Firstname is <strong>2 chars min</strong>
                   </mat-error>
@@ -51,10 +48,7 @@
               </td>
               <td>
                 <mat-form-field class="full-width" [class.mgb15]="productForm.get('lastname')?.dirty && productForm.get('lastname')?.invalid" [floatLabel]="'never'">
-                  <input matInput placeholder="Nom de famille" name="lastname" formControlName="lastname" minlength="2" required/>
-                  <mat-error *ngIf="productForm.get('author')?.get('lastname')?.dirty && productForm.get('author')?.get('lastname')?.hasError('required')">
-                    Lastname is <strong>required</strong>
-                  </mat-error>
+                  <input matInput placeholder="Nom de famille" name="lastname" formControlName="lastname" minlength="2"/>
                   <mat-error *ngIf="productForm.get('author')?.get('lastname')?.dirty && productForm.get('author')?.get('lastname')?.hasError('minlength')">
                     Lastname is <strong>2 chars min</strong>
                   </mat-error>
@@ -66,6 +60,7 @@
       </tr>
     </table>
 
+    <!--    Tableau d'Ingrédient :    -->
     <table class="table table-bordered" formArrayName="ingredients">
       <tr>
         <th colspan="2">Liste des ingrédients:</th>
@@ -74,17 +69,14 @@
       <tr *ngFor="let quantity of ingredients.controls; let i=index" [formGroupName]="i">
         <td>
           <mat-form-field class="full-width" [floatLabel]="'never'">
-<!--
-            Ingrédient :
--->
             <div class="row" *ngIf="isAddedIngr">
               <div class="col s12">
-                <mat-form-field class="full-width" [class.mgb15]="productForm.get('ingredients')?.dirty && productForm.get('ingredients')?.invalid" [floatLabel]="'never'">
-                  <input matInput placeholder="Ingrédient" type="text" name="ingredients" formControlName="ingredients" minlength="2" required/>
-                  <mat-error *ngIf="productForm.get('ingredients')?.dirty && productForm.get('ingredients')?.hasError('required')">
+                <mat-form-field class="full-width" [class.mgb15]="productForm.get('ingredient')?.dirty && productForm.get('ingredient')?.invalid" [floatLabel]="'never'">
+                  <input matInput placeholder="Ingrédient" type="text" name="ingredient" formControlName="ingredient" minlength="2" required/>
+                  <mat-error *ngIf="productForm.get('ingredient')?.dirty && productForm.get('ingredient')?.hasError('required')">
                     Ingredient is <strong>required</strong>
                   </mat-error>
-                  <mat-error *ngIf="productForm.get('ingredients')?.dirty && productForm.get('ingredients')?.hasError('minlength')">
+                  <mat-error *ngIf="productForm.get('ingredient')?.dirty && productForm.get('ingredient')?.hasError('minlength')">
                     Ingredient is <strong>2 chars min</strong>
                   </mat-error>
                 </mat-form-field>
@@ -98,6 +90,13 @@
         </td>
       </tr>
     </table>
+<!--    <table class="mat-table table-bordered" formArrayName="ingredients">
+      <tr>
+        <th class="mat-header-cell">Liste des ingrédients</th>
+        <th class="mat-header-cell"><button type="button" (click)="addIngredient()" class="btn btn-primary">Ajouter un ingrédient</button></th>
+      </tr>
+      <tr *ngFor="let quantity of ingredients"
+    </table>-->
 
     <table class="table table-bordered" formArrayName="steps">
       <tr>
@@ -160,4 +159,5 @@
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
   <button mat-button color="primary" type="submit" (click)="submit(productForm.value)"  [disabled]="productForm.invalid" >Save</button>
+  <button mat-button type="button" (click)="printLog(productForm.value)">Log</button>
 </mat-dialog-actions>

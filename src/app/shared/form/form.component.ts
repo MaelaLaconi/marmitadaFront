@@ -23,43 +23,65 @@ export class FormComponent implements OnInit, OnChanges {
 
   private readonly _submit$: EventEmitter<Recipe>;
 
-
   constructor(private _fb:FormBuilder) {
     this._isAddedStep= false;
     this._isAddedIngr = false;
 
     //this._productForm = this._buildForm();
     this._productForm = this._fb.group({
+      id: new FormControl(),
+      name: new FormControl('', Validators.compose([
+          Validators.required, Validators.minLength(2)
+        ])),
+      description: new FormControl('', Validators.compose([
+        Validators.required, Validators.minLength(2)
+      ])),
+      author: new FormGroup({
+        pseudo: new FormControl('', Validators.compose([
+          Validators.required, Validators.minLength(2)
+        ])),
+        firstname: new FormControl('', Validators.compose([
+          Validators.minLength(2)
+        ])),
+        lastname: new FormControl('', Validators.compose([
+          Validators.minLength(2)
+        ]))
+      }),
       ingredients: this._fb.array([]),
       steps: this._fb.array([]),
+      difficulty: new FormControl('', Validators.required),
+      cookingTime: new FormControl('', Validators.required),
+      preparationTime: new FormControl('', Validators.required),
     });
 
     this.addStep();
     this.addIngredient();
 
-    this._productForm.addControl('id', new FormControl());
-    this._productForm.addControl('name', new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(2)
-    ])));
-    this._productForm.addControl('author', new FormGroup({
-      pseudo: new FormControl('', Validators.compose([
-          Validators.required, Validators.minLength(2)
-        ])),
-      firstname: new FormControl('', Validators.compose([
-          Validators.required, Validators.minLength(2)
-        ])),
-      lastname: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(2)
-      ]))
-    }));
+    //
+    // this._productForm.addControl('id', new FormControl());
+    // this._productForm.addControl('name', new FormControl('', Validators.compose([
+    //   Validators.required, Validators.minLength(2)
+    // ])));
+    // this._productForm.addControl('author', new FormGroup({
+    //   pseudo: new FormControl('', Validators.compose([
+    //       Validators.required, Validators.minLength(2)
+    //     ])),
+    //   firstname: new FormControl('', Validators.compose([
+    //       Validators.required, Validators.minLength(2)
+    //     ])),
+    //   lastname: new FormControl('', Validators.compose([
+    //     Validators.required, Validators.minLength(2)
+    //   ]))
+    // }));
+    //
+    // this._productForm.addControl('description', new FormControl('', Validators.compose([
+    //   Validators.required, Validators.minLength(2)
+    // ])));
+    //
+    // this._productForm.addControl('difficulty',new FormControl('', Validators.required));
+    // this._productForm.addControl('cookingTime',new FormControl('', Validators.required));
+    // this._productForm.addControl('preparationTime',new FormControl('', Validators.required));
 
-    this._productForm.addControl('description', new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(2)
-    ])));
-
-    this._productForm.addControl('difficulty',new FormControl('', Validators.required));
-    this._productForm.addControl('cookingTime',new FormControl('', Validators.required));
-    this._productForm.addControl('preparationTime',new FormControl('', Validators.required));
     this._cancel$ = new EventEmitter<void>();
     this._submit$ = new EventEmitter<Recipe>();
     this._model = {} as Recipe;
@@ -75,13 +97,19 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   ingredientsArray(): Array<any>{
-    return new Array(this.ingredients.length)
-      .map((v, index) => this.ingredients.at(index) as FormGroup)
+    const res = new Array<string>(this.steps.length);
+    for (let i = 0; i < this.ingredients.length; i++) {
+      res[i] = this.ingredients.at(i).get('ingredient')?.value;
+    }
+    return res;
   }
 
-  stepsArray(): Array<any>{
-    return new Array(this.steps.length)
-      .map((v, index) => this.steps.at(index) as FormGroup)
+  stepsArray(): Array<string>{
+    const res = new Array<string>(this.steps.length);
+    for (let i = 0; i < this.steps.length; i++) {
+      res[i] = this.steps.at(i).get('step')?.value;
+    }
+    return res;
   }
 
   get steps() : FormArray {
@@ -90,10 +118,9 @@ export class FormComponent implements OnInit, OnChanges {
 
   newStep(): FormGroup {
     this._isAddedStep = true;
-
-    this._productForm.addControl('steps',new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(2)
-    ])));
+    // this._productForm.addControl('steps',new FormControl('', Validators.compose([
+    //   Validators.required, Validators.minLength(2)
+    // ])));
     return this._fb.group({
       step: '',
     })
@@ -101,7 +128,6 @@ export class FormComponent implements OnInit, OnChanges {
 
   addStep() {
     this.steps.push(this.newStep());
-
   }
 
   removeStep(i:number) {
@@ -114,26 +140,22 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   get ingredients() : FormArray {
-    return this._productForm.get("ingredients") as FormArray
+    return this._productForm.get('ingredients') as FormArray;
   }
-
-
 
   newIngredient(): FormGroup {
     this._isAddedIngr = true;
-    this._productForm.addControl('ingredients', new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(2)
-    ])));
+    // this._productForm.addControl('ingredients', new FormControl('', Validators.compose([
+    //   Validators.required, Validators.minLength(2)
+    // ])));
     return this._fb.group({
-      ingredients: '',
-
+      ingredient: '',
     })
   }
 
   addIngredient() {
     this.ingredients.push(this.newIngredient());
   }
-
 
   removeIngredient(i:number) {
     if(this.ingredients.length==0){
@@ -181,8 +203,6 @@ export class FormComponent implements OnInit, OnChanges {
     return this._submit$;
   }
 
-
-
   /**
    * OnInit implementation
    */
@@ -197,32 +217,37 @@ export class FormComponent implements OnInit, OnChanges {
     this._cancel$.emit();
   }
 
+  printLog(elem: any): void{
+    console.log(elem);
+  }
+
   /**
    * Function to emit event to submit form and recipe
    */
   submit(recipe: Recipe): void {
 
-    console.log("dans le submit + "+ Object.values(recipe.steps))
+    // console.log("dans le submit + "+ Object.values(recipe.steps))
     const recipe1 : Recipe = {
-
       'name': recipe.name,
       'description': recipe.description,
-      'author': {
-        'pseudo': recipe.author.pseudo
-      },
-      'ingredients': this.ingredientsArray().map(value => {return value.ingredients}),
-      'steps': this.stepsArray().map(value => {return value.step}),
+      'author': recipe.author,
+      'ingredients': this.ingredientsArray(),
+      'steps': this.stepsArray()/*.map(value => value.step)*/,
       'difficulty': recipe.difficulty,
       'preparationTime': recipe.preparationTime,
       'cookingTime': recipe.cookingTime,
     };
-      this._submit$.emit(recipe1);
+    console.log(recipe1);
+    this._submit$.emit(recipe1);
   }
-
 
   get productForm(): FormGroup {
     return this._productForm;
   }
+
+  // getIngredientFormAt(i: number): FormGroup {
+  //   return ((this._productForm.get('ingredients')) as FormArray).at(i) as FormGroup;
+  // }
 
   ngOnChanges(record: any): void {
     if (record.model && record.model.currentValue) {
