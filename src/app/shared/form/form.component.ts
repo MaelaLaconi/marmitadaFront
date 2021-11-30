@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import { Recipe} from "../../recipe/recipe.type";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "./custom-validators";
+import {Author} from "../../recipe/author.type";
 
 @Component({
   selector: 'app-form',
@@ -223,10 +224,11 @@ export class FormComponent implements OnInit, OnChanges {
 
     // console.log("dans le submit + "+ Object.values(recipe.steps))
     const recipe1 : Recipe = {
+      'id': recipe.id,
       'name': recipe.name,
-      'category':recipe.category,
+      'category': recipe.category,
       'description': recipe.description,
-      'author': recipe.author,
+      'author': this._getAuthor(recipe.author),
       'ingredients': this.ingredientsArray(),
       'steps': this.stepsArray()/*.map(value => value.step)*/,
       'difficulty': recipe.difficulty,
@@ -235,6 +237,11 @@ export class FormComponent implements OnInit, OnChanges {
     };
     console.log(recipe1);
     this._submit$.emit(recipe1);
+  }
+
+  private _getAuthor(author: Author): Author {
+    if(!!author.lastname && !!author.firstname) return author;
+    return {pseudo: author.pseudo} as Author;
   }
 
   get productForm(): FormGroup {
@@ -262,6 +269,24 @@ export class FormComponent implements OnInit, OnChanges {
       };
       this._isUpdateMode = false;
     }
+
+    this._model.ingredients.forEach((value) => {
+      this._isAddedIngr = true;
+      this.ingredients.push(
+        this._fb.group({
+            ingredient: value,
+          }
+        ));
+    });
+    this._model.steps.forEach((value) => {
+      this._isAddedStep = true;
+      this.steps.push(
+        this._fb.group({
+            step: value,
+          }
+        ));
+    });
+    this._productForm.patchValue(this._model);
   }
 
   /**
