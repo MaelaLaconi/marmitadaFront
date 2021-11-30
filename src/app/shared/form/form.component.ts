@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import { Recipe} from "../types/recipe.type";
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Author} from "../types/author.type";
+import {CustomValidators} from "./custom-validators";
 
 @Component({
   selector: 'app-form',
@@ -32,7 +33,8 @@ export class FormComponent implements OnInit, OnChanges {
     this._productForm = this._fb.group({
       id: new FormControl(),
       name: new FormControl('', Validators.compose([
-          Validators.required, Validators.minLength(2)
+          Validators.required, Validators.minLength(2),
+          CustomValidators.firstLetterUpper
         ])),
       description: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(2)
@@ -141,7 +143,6 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   get ingredients() : FormArray {
-    // console.log(this._productForm.get('ingredients'));
     return this._productForm.get('ingredients') as FormArray;
   }
 
@@ -250,8 +251,6 @@ export class FormComponent implements OnInit, OnChanges {
   ngOnChanges(record: any): void {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
-      //console.log(this._model.steps);
-      //console.log(this._model.ingredients);
       this._isUpdateMode = true;
     } else {
       this._model = {

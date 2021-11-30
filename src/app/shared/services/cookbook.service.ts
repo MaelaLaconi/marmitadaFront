@@ -118,7 +118,16 @@ export class CookbookService {
       );
   }
 
-
+  /**
+   * Function to return list of string category
+   */
+  fetchWithSort(methode: string): Observable<Recipe[]>  {
+    return this._http.get<Recipe[]>(this._backendURL.tri.replace(':sortMethod', methode))
+      .pipe(
+        filter((recipes: Recipe[]) => !!recipes),
+        defaultIfEmpty([] as Recipe[])
+      );
+  }
 
   get defautltRecipe(): Recipe {
     return this._defautltRecipe;

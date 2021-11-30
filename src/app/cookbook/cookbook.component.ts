@@ -13,18 +13,23 @@ import {Observable} from "rxjs";
 })
 export class CookbookComponent implements OnInit {
   private _cookbook: Recipe[];
-
+  private _sortValue: string;
   // private property to store dialogStatus value
   private _dialogStatus: string;
   // private property to store dialog reference
   private _cookbookDialog: MatDialogRef<DialogComponent, Recipe> | undefined;
 
   private _view: string; //pour plus tard si on veut switch de vue
+  isChecked = false;
   constructor(private _cookbookService: CookbookService, private _dialog: MatDialog) {
     this._cookbook=[];
     this._dialogStatus = 'inactive';
     this._view= 'list';
+    this._sortValue='name';
     }
+
+
+
 
   ngOnInit(): void {
     this._cookbookService
@@ -45,6 +50,15 @@ export class CookbookComponent implements OnInit {
       .subscribe((id: string) => this._cookbook = this._cookbook.filter((r: Recipe) => r.id !== id));
   }
 
+  /**
+   * Function to sort all the recipe
+   */
+  sort(): void {
+    this.isChecked ? this._sortValue='-name': this._sortValue='name';
+    this._cookbookService
+      .fetchWithSort(this._sortValue)
+      .subscribe({ next: (recipe: Recipe[]) => this._cookbook = recipe });
+  }
 
   get view(): string {
     return this._view;

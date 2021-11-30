@@ -16,6 +16,9 @@
             <mat-error *ngIf="productForm.get('name')?.dirty && productForm.get('name')?.hasError('minlength')">
               Recipe name is <strong>2 chars min</strong>
             </mat-error>
+            <mat-error *ngIf="productForm.get('name')?.dirty && productForm.get('name')?.hasError('required') && productForm.get('name')?.hasError('firstLetterUpper')">
+              Invalid name <strong>should begin with uppercase</strong>
+            </mat-error>
           </mat-form-field>
 
           <!--          Description          -->
