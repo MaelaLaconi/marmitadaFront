@@ -1,13 +1,13 @@
 mat-toolbar.extend-toolbar {
-  background-color: #0168AB;
+  background-color: #fac5fa;
   background-repeat: no-repeat;
   background-position: right;
   top: 0px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   width: 100%;
   z-index: 1;
-  color: white;
+  color: #333333;
   margin-bottom: 10px;
+  height: 50px;
 }
 
 mat-toolbar .flex {
@@ -26,7 +26,7 @@ mat-toolbar a {
 }
 
 mat-toolbar a:not(.active):hover {
-  border-bottom: 2px solid white;
+  color: white;
 }
 
 mat-toolbar a img {
@@ -42,4 +42,14 @@ mat-toolbar-row:nth-child(2) {
   text-align: center;
   height: 56px;
   margin-top: 56px;
+}
+
+a{
+  font-size: 20px;
+  color: lightgrey;
+}
+
+.button-center{
+  flex: 1 1 auto;
+  text-align: center;
 }

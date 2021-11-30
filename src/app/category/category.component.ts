@@ -23,9 +23,9 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._route.params.pipe(
-      filter((params: any) => !!params.id),
-      mergeMap((params: any) => this._cookbookService.fetchByCategory(params.id)),
+   this._route.params.pipe(
+      filter((params: any) => !!params.category),
+      mergeMap((params: any) => this._cookbookService.fetchByCategory(params.category)),
       tap(() => this._isRecipe = true)
     ).subscribe({ next: (recipe: Recipe[]) => this._recipes = recipe });
   }

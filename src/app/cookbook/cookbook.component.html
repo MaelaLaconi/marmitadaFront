@@ -1,8 +1,10 @@
+<h3>Toutes nos recettes</h3>
+
 <section>
   <app-card [recipe]="recipe" (deleteRecipe)="delete($event)" *ngFor="let recipe of cookbook"></app-card>
 </section>
 
 
-<button (click)="showDialog()" *ngIf="dialogStatus === 'inactive'" mat-fab color="accent">
+<button (click)="showDialog()" *ngIf="dialogStatus === 'inactive'" mat-raised-button>
   <i class="material-icons">add</i>
 </button>

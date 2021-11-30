@@ -90,13 +90,6 @@
         </td>
       </tr>
     </table>
-<!--    <table class="mat-table table-bordered" formArrayName="ingredients">
-      <tr>
-        <th class="mat-header-cell">Liste des ingrédients</th>
-        <th class="mat-header-cell"><button type="button" (click)="addIngredient()" class="btn btn-primary">Ajouter un ingrédient</button></th>
-      </tr>
-      <tr *ngFor="let quantity of ingredients"
-    </table>-->
 
     <table class="table table-bordered" formArrayName="steps">
       <tr>
@@ -159,5 +152,4 @@
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
   <button mat-button color="primary" type="submit" (click)="submit(productForm.value)"  [disabled]="productForm.invalid" >Save</button>
-  <button mat-button type="button" (click)="printLog(productForm.value)">Log</button>
 </mat-dialog-actions>

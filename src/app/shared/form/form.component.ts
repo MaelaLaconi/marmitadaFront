@@ -118,9 +118,6 @@ export class FormComponent implements OnInit, OnChanges {
 
   newStep(): FormGroup {
     this._isAddedStep = true;
-    // this._productForm.addControl('steps',new FormControl('', Validators.compose([
-    //   Validators.required, Validators.minLength(2)
-    // ])));
     return this._fb.group({
       step: '',
     })
@@ -145,9 +142,6 @@ export class FormComponent implements OnInit, OnChanges {
 
   newIngredient(): FormGroup {
     this._isAddedIngr = true;
-    // this._productForm.addControl('ingredients', new FormControl('', Validators.compose([
-    //   Validators.required, Validators.minLength(2)
-    // ])));
     return this._fb.group({
       ingredient: '',
     })
@@ -217,10 +211,6 @@ export class FormComponent implements OnInit, OnChanges {
     this._cancel$.emit();
   }
 
-  printLog(elem: any): void{
-    console.log(elem);
-  }
-
   /**
    * Function to emit event to submit form and recipe
    */
@@ -244,10 +234,6 @@ export class FormComponent implements OnInit, OnChanges {
   get productForm(): FormGroup {
     return this._productForm;
   }
-
-  // getIngredientFormAt(i: number): FormGroup {
-  //   return ((this._productForm.get('ingredients')) as FormArray).at(i) as FormGroup;
-  // }
 
   ngOnChanges(record: any): void {
     if (record.model && record.model.currentValue) {

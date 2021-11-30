@@ -85,6 +85,17 @@ export class CookbookService {
       );
   }
 
+  /**
+   * Function to return list of recipe by category
+   */
+  fetchAllCategory(): Observable<String[]>  {
+    return this._http.get<String[]>(this._backendURL.allCateg)
+      .pipe(
+        filter((recipes: String[]) => !!recipes),
+        defaultIfEmpty([] as String[])
+      );
+  }
+
 
   get defautltRecipe(): Recipe {
     return this._defautltRecipe;
@@ -132,6 +143,17 @@ export class CookbookService {
    */
   private _options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
+  }
+
+  /**
+   * Function to return one random person from people list
+   */
+  fetchRandom(): Observable<Recipe> {
+    return this._http.get<Recipe>(this._backendURL.randomRecipe)
+      .pipe(
+        filter((recipe: Recipe) => !!recipe),
+        defaultIfEmpty(this._defautltRecipe)
+      );
   }
 
 }

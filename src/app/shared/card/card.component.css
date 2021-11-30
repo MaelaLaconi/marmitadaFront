@@ -2,6 +2,28 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  font-size: 25px;
+  color: #941f94 ;
+}
+
+hr {
+  border: none;
+  border-top: 3px double #333;
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+}
+
+hr:after {
+  background: #fff;
+  content: 'informations';
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
+}
+
 section {
   display: flex;
   flex-flow: row wrap;
@@ -12,16 +34,21 @@ section {
 @media (min-width: 768px) {
   :host(.wide) mat-card,
   :host(.wide) mat-list-item{
-    width: 600px;
+    width: auto;
   }
 }
-
+.gray_text {
+  font-size: 20px;
+  color: gray !important;
+  text-align: center !important;
+  margin-top: 15px;
+}
 mat-card,
 mat-list-item {
   color: rgba(0,0,0,0.87);
   background-color: white;
   margin: 10px;
-  width: 600px;
+  width: 700px;
 }
 
 mat-card:hover {
@@ -40,9 +67,11 @@ mat-list-item {
 mat-card-title {
   margin-bottom: 0;
 }
-
+.items_list{
+  font-size: 18px;
+}
 mat-card-title span {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 32px;
 }
@@ -89,7 +118,7 @@ mat-icon {
 }
 
 a {
-  color: #337ab7;
+  color: #eb83eb;
   text-decoration: none;
 }
 
