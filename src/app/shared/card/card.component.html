@@ -10,23 +10,46 @@
       </mat-card-subtitle>
 
     </mat-card-title-group>
-    <mat-list>
-      <h3 mat-subheader>Liste des ingrédients</h3>
-      <mat-list-item class="items_list" *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
-    </mat-list>
-
-    <mat-list>
-      <h3 mat-subheader>Etapes à suivre</h3>
-      <mat-list-item class="items_list" *ngFor="let step of recipe.steps;let indexOfelement=index;"><u>Step {{indexOfelement}}</u> : {{step}} </mat-list-item>
-    </mat-list>
-    <hr>
     <mat-card-content>
-      Difficulté: {{recipe.difficulty}},
-      Temps de préparation: {{recipe.preparationTime}},
-      Temps de cuisson: {{recipe.cookingTime}}
+      <mat-list>
+        <h3 mat-subheader>Liste des ingrédients</h3>
+        <mat-list-item class="items_list" *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
+      </mat-list>
+
+      <mat-list>
+        <h3 mat-subheader>Etapes à suivre</h3>
+        <mat-list-item class="items_list" *ngFor="let step of recipe.steps;let indexOfelement=index;">
+          <u>Étape {{indexOfelement}}</u> : {{step}} </mat-list-item>
+      </mat-list>
+
+      <hr>
+      <mat-grid-list cols="3" rowHeight="9:1" >
+        <mat-grid-tile>
+          Difficulté :
+        </mat-grid-tile>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-grid-tile>
+          Temps de préparation :
+        </mat-grid-tile>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-grid-tile>
+          Temps de cuisson :
+        </mat-grid-tile>
+        <mat-grid-tile>
+          {{recipe.difficulty}}
+        </mat-grid-tile>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-grid-tile>
+          {{recipe.preparationTime}}
+        </mat-grid-tile>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-grid-tile>
+          {{recipe.cookingTime}}
+        </mat-grid-tile>
+      </mat-grid-list>
     </mat-card-content>
 
-    <mat-card-content>
+    <mat-card-footer>
       <div class="buttons-info">
         <button mat-button title="Delete" (click)="delete(recipe)">
           <mat-icon>delete</mat-icon>
@@ -36,6 +59,6 @@
           <mat-icon>edit</mat-icon>
         </a>
       </div>
-    </mat-card-content>
+    </mat-card-footer>
   </mat-card>
 </section>
