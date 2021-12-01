@@ -1,19 +1,19 @@
 <body>
-<mat-toolbar class="extend-toolbar">
-  <span>
-    <a [routerLink]="['/recipe']">Découvrir une recette</a>
-  </span>
+  <mat-toolbar class="extend-toolbar">
+    <span>
+      <a [routerLink]="['/recipe']">Découvrir une recette</a>
+    </span>
 
-  <span class="flex"></span>
-  <span class="button-center">
-    <a [routerLink]="['/cookbook']">Voir toutes les recettes</a>
-  </span>
+    <span class="flex"></span>
+    <span class="button-center">
+      <a [routerLink]="['/cookbook']">Voir toutes les recettes</a>
+    </span>
 
-  <span class="flex"></span>
-  <span>
-    <a [routerLink]="['/']">Page d'accueil</a>
-  </span>
-</mat-toolbar>
+    <span class="flex"></span>
+    <span>
+      <a [routerLink]="['/']">Page d'accueil</a>
+    </span>
+  </mat-toolbar>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </body>
