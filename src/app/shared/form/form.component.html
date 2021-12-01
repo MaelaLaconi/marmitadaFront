@@ -11,7 +11,7 @@
           <mat-form-field class="full-width"
                           [class.mgb15]="productForm.get('name')?.dirty && productForm.get('name')?.invalid"
                           [floatLabel]="'never'">
-            <input matInput placeholder="Recipe name" formControlName="name" minlength="2" name="name"
+            <input matInput placeholder="Nom de la recette" formControlName="name" minlength="2" name="name"
                    matTooltip="Nom de la recette (doit commencer par une majuscule)"
             />
             <mat-error *ngIf="productForm.get('name')?.dirty && productForm.get('name')?.hasError('required')">
@@ -43,7 +43,7 @@
           <mat-form-field class="full-width"
                           [class.mgb15]="productForm.get('category')?.dirty && productForm.get('category')?.invalid"
                           [floatLabel]="'never'">
-            <input matInput placeholder="Categorie" name="category"  formControlName="category" minlength="2" required
+            <input matInput placeholder="Catégorie" name="category"  formControlName="category" minlength="2" required
                    matTooltip="Category de la recette (sucré, salé, dessert, ...)"/>
             <mat-error *ngIf="productForm.get('category')?.dirty && productForm.get('category')?.hasError('required')">
               Category is <strong>required</strong>
@@ -166,7 +166,7 @@
       <mat-form-field class="full-width"
                       [class.mgb15]="productForm.get('difficulty')?.dirty && productForm.get('difficulty')?.invalid"
                       [floatLabel]="'never'">
-        <input matInput placeholder="Difficulty" type="number" name="difficulty" formControlName="difficulty" required
+        <input matInput placeholder="Difficultée" type="number" name="difficulty" formControlName="difficulty" required
                matTooltip="Difficultée de la recette (0 étant la plus faible)"/>
         <mat-error *ngIf="productForm.get('difficulty')?.dirty && productForm.get('difficulty')?.hasError('required')">
           Difficulty is <strong>required</strong>
@@ -175,7 +175,7 @@
       <mat-form-field class="full-width"
                       [class.mgb15]="productForm.get('preparationTime')?.dirty && productForm.get('preparationTime')?.invalid"
                       [floatLabel]="'never'">
-        <input matInput placeholder="Preparation Time" type="number" name="preparationTime" formControlName="preparationTime" required
+        <input matInput placeholder="Temps de préparation" type="number" name="preparationTime" formControlName="preparationTime" required
                matTooltip="Temps de préparation de la recette (sans le temps de cuisson)"/>
         <mat-error *ngIf="productForm.get('preparationTime')?.dirty && productForm.get('preparationTime')?.hasError('required')">
           Preparation time is <strong>required</strong>
@@ -184,8 +184,8 @@
       <mat-form-field class="full-width"
                       [class.mgb15]="productForm.get('cookingTime')?.dirty && productForm.get('cookingTime')?.invalid"
                       [floatLabel]="'never'">
-        <input matInput placeholder="Cooking Time" type="number" name="cookingTime" formControlName="cookingTime" required
-               matTooltip="Temps de cuisson"/>
+        <input matInput placeholder="Temps de cuisson" type="number" name="cookingTime" formControlName="cookingTime" required
+               matTooltip="Temps de cuisson de la recette"/>
         <mat-error *ngIf="productForm.get('cookingTime')?.dirty && productForm.get('cookingTime')?.hasError('required')">
           Cooking time is <strong>required</strong>
         </mat-error>
