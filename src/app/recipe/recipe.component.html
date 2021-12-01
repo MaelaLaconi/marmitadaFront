@@ -1,3 +1,3 @@
 <section>
-  <app-card [recipe]="recipe"></app-card>
+  <app-card (deleteRecipe)="delete($event)" [recipe]="recipe"></app-card>
 </section>
