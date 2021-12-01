@@ -15,7 +15,8 @@
                placeholder="Cannelés"
                matInput
                [formControl]="myControl"
-               [matAutocomplete]="auto">
+               [matAutocomplete]="auto"
+               [(ngModel)]="searchText">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
@@ -23,7 +24,7 @@
         </mat-autocomplete>
       </mat-form-field>
     </form>
-    <button mat-button type="button" [routerLink]="['/research/'+myControl.value]" >Rechercher</button>
+    <button mat-button type="button" [disabled]="!searchText" [routerLink]="['/research/'+myControl.value]" >Rechercher</button>
   </mat-grid-tile>
 
 </mat-grid-list>

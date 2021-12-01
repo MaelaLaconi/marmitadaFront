@@ -15,10 +15,22 @@ export class HomepageComponent implements OnInit {
   private _options : String[];
   private _myControl = new FormControl();
   private _filteredOptions: Observable<String[]> | undefined;
+  // value of reseach bar
+  private _searchText: string;
 
   constructor(private _cookbookService: CookbookService) {
     this._category=[];
     this._options=[];
+    this._searchText='';
+  }
+
+
+  set searchText(value: string) {
+    this._searchText = value;
+  }
+
+  get searchText(): string {
+    return this._searchText;
   }
 
   get options(): String[] {

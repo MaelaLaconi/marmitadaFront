@@ -21,16 +21,25 @@ export class CookbookComponent implements OnInit {
   // our dialog
   private _cookbookDialog: MatDialogRef<DialogComponent, Recipe> | undefined;
   //boolean for the slide toggle (sort)
-  isChecked = false;
+  private _isChecked: boolean;
 
   constructor(private _cookbookService: CookbookService, private _dialog: MatDialog) {
     this._cookbook=[];
     this._dialogStatus = 'inactive';
     this._sortValue='name';
+    this._isChecked=false;
+  }
+
+  get isChecked(): boolean {
+    return this._isChecked;
+  }
+
+  set isChecked(value: boolean) {
+    this._isChecked = value;
   }
 
   get sortOrder() {
-    return this.isChecked ? 'décroissant' : 'croissant';
+    return this._isChecked ? 'décroissant' : 'croissant';
   }
 
   /**
@@ -62,7 +71,7 @@ export class CookbookComponent implements OnInit {
    * Function to sort all the recipe
    */
   sortByElem(elem: string): void {
-    this.isChecked ? this._sortValue='-'+elem: this._sortValue=elem;
+    this._isChecked ? this._sortValue='-'+elem: this._sortValue=elem;
     this._cookbookService
       .fetchWithSort(this._sortValue)
       .subscribe({ next: (recipe: Recipe[]) => this._cookbook = recipe });
