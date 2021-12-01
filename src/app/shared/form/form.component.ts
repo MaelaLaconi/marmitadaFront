@@ -36,7 +36,7 @@ export class FormComponent implements OnInit, OnChanges {
     this._isUpdateMode = false;
   }
 
-  /* Gestion des ingrédients */
+  // Gestion des ingrédients //
 
   /**
    * Getter of _isAddedIngr
@@ -86,8 +86,8 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Remove the ingredients from the FormArray
-   * @param i
+   * Remove the ingredient at index i from the FormArray
+   * @param {number} i index of the ingredient to remove
    */
   removeIngredient(i:number) {
     if(this.ingredients.length==0){
@@ -97,7 +97,7 @@ export class FormComponent implements OnInit, OnChanges {
     this.ingredients.removeAt(i);
   }
 
-  /* Gestion des étapes */
+  // Gestion des étapes //
 
   /**
    * Getter of _isAddedStep
@@ -107,10 +107,18 @@ export class FormComponent implements OnInit, OnChanges {
     return this._isAddedStep;
   }
 
+  /**
+   * Getter of the 'steps' FormArray in the _productForm FormGroup
+   * @return {FormArray} this._productForm.get('steps')
+   */
   get steps() : FormArray {
     return this._productForm.get("steps") as FormArray
   }
 
+  /**
+   * Return the steps FormArray values in a simple Array
+   * @return {Array<string>} array with the steps values
+   */
   stepsArray(): Array<string>{
     const res = new Array<string>(this.steps.length);
     for (let i = 0; i < this.steps.length; i++) {
@@ -119,6 +127,11 @@ export class FormComponent implements OnInit, OnChanges {
     return res;
   }
 
+  /**
+   * Create a new FormGroup to add a step
+   * Set the _isAddedStep value to true.
+   * @return {FormGroup} this._fb.group({step: '',})
+   */
   newStep(): FormGroup {
     this._isAddedStep = true;
     return this._fb.group({
@@ -126,10 +139,17 @@ export class FormComponent implements OnInit, OnChanges {
     })
   }
 
+  /**
+   * Add a new step to the steps FormArray
+   */
   addStep() {
     this.steps.push(this.newStep());
   }
 
+  /**
+   * Remove the step at index i from the FormArray
+   * @param {number} i index of the step to remove
+   */
   removeStep(i:number) {
     if(this.steps.length == 0){
       this._isAddedStep = false;
@@ -138,6 +158,8 @@ export class FormComponent implements OnInit, OnChanges {
     }
     this.steps.removeAt(i);
   }
+
+  // Gestion du formulaire //
 
   /**
    *
@@ -170,24 +192,17 @@ export class FormComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Returns private property _add$
-   */
-  @Output('submit') get submit$(): EventEmitter<Recipe> {
-    return this._submit$;
-  }
-
-  /**
-   * OnInit implementation
-   */
-  ngOnInit(): void {
-
-  }
-
-  /**
    * Function to emit event to cancel process
    */
   cancel(): void {
     this._cancel$.emit();
+  }
+
+  /**
+   * Returns private property _add$
+   */
+  @Output('submit') get submit$(): EventEmitter<Recipe> {
+    return this._submit$;
   }
 
   /**
@@ -210,15 +225,17 @@ export class FormComponent implements OnInit, OnChanges {
     this._submit$.emit(recipe1);
   }
 
-  private _getAuthor(author: Author): Author {
-    if(!!author.lastname && !!author.firstname) return author;
-    return {pseudo: author.pseudo} as Author;
+  /**
+   * OnInit implementation
+   */
+  ngOnInit(): void {
+
   }
 
-  get productForm(): FormGroup {
-    return this._productForm;
-  }
-
+  /**
+   * Function to handle component update
+   * @param record the data with the changed values
+   */
   ngOnChanges(record: any): void {
     if (record.model && record.model.currentValue) {
       this._model = record.model.currentValue;
@@ -258,6 +275,25 @@ export class FormComponent implements OnInit, OnChanges {
         ));
     });
     this._productForm.patchValue(this._model);
+  }
+
+  /**
+   * Return a valid author object.
+   * If the firstname or the lastname is incomplete, the author object will only have a pseudo.
+   * @param {Author} author to verify
+   * @private
+   */
+  private _getAuthor(author: Author): Author {
+    if(!!author.lastname && !!author.firstname) return author;
+    return {pseudo: author.pseudo} as Author;
+  }
+
+  /**
+   * Getter for the FormGroup containing all the data
+   * @return {FormGroup} this._productForm
+   */
+  get productForm(): FormGroup {
+    return this._productForm;
   }
 
   /**
