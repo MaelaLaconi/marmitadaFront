@@ -29,6 +29,10 @@ export class CookbookComponent implements OnInit {
     this._sortValue='name';
   }
 
+  get sortOrder() {
+    return this.isChecked ? 'décroissant' : 'croissant';
+  }
+
   /**
    * fetch all the recipes
    */
@@ -57,13 +61,12 @@ export class CookbookComponent implements OnInit {
   /**
    * Function to sort all the recipe
    */
-  sort(): void {
-    this.isChecked ? this._sortValue='-name': this._sortValue='name';
+  sortByElem(elem: string): void {
+    this.isChecked ? this._sortValue='-'+elem: this._sortValue=elem;
     this._cookbookService
       .fetchWithSort(this._sortValue)
       .subscribe({ next: (recipe: Recipe[]) => this._cookbook = recipe });
   }
-
 
   /**
    * Returns private property _dialogStatus
