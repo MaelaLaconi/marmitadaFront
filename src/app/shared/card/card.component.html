@@ -4,7 +4,10 @@
       <mat-card-title>
         <span><a [routerLink]="['/recipe/'+recipe.id]">{{ recipe.name }}</a></span>
       </mat-card-title>
+
       <mat-card-subtitle class="gray_text">{{ recipe.description }}</mat-card-subtitle>
+      <mat-card-subtitle class="gray_text">(Catégorie : {{ recipe?.category }})</mat-card-subtitle>
+
       <mat-card-subtitle class="contact-info">
         Par : {{ recipe.author?.firstname }} &lt;{{ recipe.author.pseudo }}&gt; {{ recipe.author?.lastname }}
       </mat-card-subtitle>

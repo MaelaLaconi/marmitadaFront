@@ -12,26 +12,35 @@ import {Observable} from "rxjs";
   styleUrls: ['./cookbook.component.css']
 })
 export class CookbookComponent implements OnInit {
+  //contains all our recipes
   private _cookbook: Recipe[];
+  // asc or desc sort
   private _sortValue: string;
+  // active or inactive status
   private _dialogStatus: string;
+  // our dialog
   private _cookbookDialog: MatDialogRef<DialogComponent, Recipe> | undefined;
-
-  private _view: string; //pour plus tard si on veut switch de vue
+  //boolean for the slide toggle (sort)
   isChecked = false;
+
   constructor(private _cookbookService: CookbookService, private _dialog: MatDialog) {
     this._cookbook=[];
     this._dialogStatus = 'inactive';
-    this._view= 'list';
     this._sortValue='name';
-    }
+  }
 
+  /**
+   * fetch all the recipes
+   */
   ngOnInit(): void {
     this._cookbookService
       .fetch()
       .subscribe({ next: (recipe: Recipe[]) => this._cookbook = recipe });
   }
 
+  /**
+   * get all the recipes
+   */
   get cookbook(): Recipe[] {
     return this._cookbook;
   }
@@ -55,9 +64,6 @@ export class CookbookComponent implements OnInit {
       .subscribe({ next: (recipe: Recipe[]) => this._cookbook = recipe });
   }
 
-  get view(): string {
-    return this._view;
-  }
 
   /**
    * Returns private property _dialogStatus
@@ -94,7 +100,7 @@ export class CookbookComponent implements OnInit {
   }
 
   /**
-   * Add new person
+   * Add new recipe to the cookbook
    */
   private _add(recipe: Recipe | undefined): Observable<Recipe> {
     return this._cookbookService.create(recipe as Recipe);
