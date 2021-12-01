@@ -15,18 +15,19 @@
     </mat-card-title-group>
 
     <mat-card-content>
-      <mat-list>
-        <h3 mat-subheader>Liste des ingrédients</h3>
-        <mat-list-item class="items_ingr" *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
-      </mat-list>
+      <div *ngIf="!isCookbook">
+        <mat-list>
+          <h3 mat-subheader>Liste des ingrédients</h3>
+          <mat-list-item class="items_ingr" *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
+        </mat-list>
 
-      <mat-list>
-        <h3 mat-subheader>Etapes à suivre</h3>
-        <mat-list-item class="items_steps" *ngFor="let step of recipe.steps;let indexOfelement=index;">
-          <u>Étape {{indexOfelement}}</u> : {{step}}
-        </mat-list-item>
-      </mat-list>
-
+        <mat-list>
+          <h3 mat-subheader>Etapes à suivre</h3>
+          <mat-list-item class="items_steps" *ngFor="let step of recipe.steps;let indexOfelement=index;">
+            <u>Étape {{indexOfelement}}</u> : {{step}}
+          </mat-list-item>
+        </mat-list>
+      </div>
       <hr>
       <mat-grid-list cols="3" rowHeight="9:1" >
         <mat-grid-tile>
