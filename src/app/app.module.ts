@@ -29,6 +29,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -43,30 +44,31 @@ import {MatRadioModule} from "@angular/material/radio";
     CategoryComponent,
     ResearchComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatListModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatIconModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatButtonToggleModule,
-    MatGridListModule,
-    MatSlideToggleModule,
-    MatCheckboxModule,
-    MatRadioModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatListModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatIconModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatButtonToggleModule,
+        MatGridListModule,
+        MatSlideToggleModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        MatTooltipModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
