@@ -209,7 +209,6 @@ export class FormComponent implements OnInit, OnChanges {
    * Function to emit event to submit form and recipe
    */
   submit(recipe: Recipe): void {
-
     const recipe1 : Recipe = {
       'id': recipe.id,
       'name': recipe.name,
