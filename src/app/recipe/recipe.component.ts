@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {filter, mergeMap, tap} from "rxjs/operators";
 import {CookbookService} from "../shared/services/cookbook.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Recipe} from "../shared/types/recipe.type";
 import {merge} from "rxjs";
 
@@ -14,7 +14,7 @@ export class RecipeComponent implements OnInit {
 
   private _recipe: any;
   private _isRecipe;
-  constructor(private _cookbookService: CookbookService, private _route: ActivatedRoute) {
+  constructor(private _cookbookService: CookbookService, private _route: ActivatedRoute, private _router: Router) {
     this._recipe = {} as Recipe;
     this._isRecipe=false;
   }
@@ -44,6 +44,20 @@ export class RecipeComponent implements OnInit {
           this._isRecipe = true;
         }
       });
+  }
+
+  /**
+   * Function to delete one recipe
+   */
+  delete(recipe: Recipe): void {
+    this._cookbookService
+      .delete(recipe.id as string)
+      .subscribe({
+          error: () => this._router.navigate(['/cookbook']),
+          complete: () => this._router.navigate(['/cookbook'])
+        }
+      );
+
   }
 
   get recipe(): any {
