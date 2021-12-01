@@ -4,8 +4,31 @@ h1 {
 
 h3 {
   font-size: 25px;
-  color: #941f94 ;
+  color: #884764 ;
 }
+
+
+.gray_text {
+  font-size: 20px;
+  color: gray !important;
+  text-align: center !important;
+}
+
+.mat-subheader {
+  font-size: 24px;
+  color: #884764;
+}
+
+.buttons-info {
+  float: right;
+  margin-top: -50px;
+}
+
+a {
+  color: #54326b;
+  text-decoration: none;
+}
+
 
 hr {
   border: none;
@@ -29,6 +52,7 @@ section {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+  background-color: #f3f3f3;
 }
 
 @media (min-width: 768px) {
@@ -37,12 +61,11 @@ section {
     width: auto;
   }
 }
-.gray_text {
-  font-size: 20px;
-  color: gray !important;
-  text-align: center !important;
-  margin-top: 15px;
+
+.mat-list-item{
+  max-height: 50px;
 }
+
 mat-card,
 mat-list-item {
   color: rgba(0,0,0,0.87);
@@ -51,10 +74,7 @@ mat-list-item {
   width: 700px;
 }
 
-.mat-subheader {
-  font-size: 24px;
-  color: #9c189c;
-}
+
 
 mat-card:hover {
   box-shadow: 0 11px 15px -7px rgba(0,0,0,.2),
@@ -83,7 +103,10 @@ mat-card-title span {
 
 mat-card-subtitle.contact-info {
   margin-top: -7px;
+  margin-left: 10px;
   height: 20px;
+  color: #884764;
+  font-size: 18px;
 }
 
 mat-card-title-group {
@@ -100,10 +123,7 @@ mat-card-title-group {
   text-decoration: underline;
 }
 
-.buttons-info {
-  float: right;
-  margin-top: -50px;
-}
+
 
 @media (max-width: 412px) {
   .buttons-info {
@@ -122,10 +142,7 @@ mat-icon {
   margin: 4px;
 }
 
-a {
-  color: #eb83eb;
-  text-decoration: none;
-}
+
 
 mat-card-actions button[mat-raised-button] {
   margin: 5px;

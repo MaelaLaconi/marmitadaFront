@@ -17,13 +17,14 @@
     <mat-card-content>
       <mat-list>
         <h3 mat-subheader>Liste des ingrédients</h3>
-        <mat-list-item class="items_list" *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
+        <mat-list-item class="items_ingr" *ngFor="let ingredient of recipe.ingredients"> {{ingredient}} </mat-list-item>
       </mat-list>
 
       <mat-list>
         <h3 mat-subheader>Etapes à suivre</h3>
-        <mat-list-item class="items_list" *ngFor="let step of recipe.steps;let indexOfelement=index;">
-          <u>Étape {{indexOfelement}}</u> : {{step}} </mat-list-item>
+        <mat-list-item class="items_steps" *ngFor="let step of recipe.steps;let indexOfelement=index;">
+          <u>Étape {{indexOfelement}}</u> : {{step}}
+        </mat-list-item>
       </mat-list>
 
       <hr>

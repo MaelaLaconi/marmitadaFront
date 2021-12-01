@@ -1,7 +1,8 @@
 h3{
-  font-size: 30px;
-  color: darkgray;
+  font-size: 35px;
+  color: #eb83eb;
 }
+
 
 .choice{
   font-size: 20px;
@@ -22,3 +23,10 @@ h3{
 .example-full-width {
   width: 100%;
 }
+
+.exiplications{
+  text-align: center;
+  font-size: 32px;
+  color: grey;
+}
+

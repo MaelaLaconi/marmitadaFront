@@ -1,4 +1,5 @@
-<section><h3>Toutes nos recettes</h3></section>
+<section>
+  <section><h3>Toutes nos recettes</h3></section>
 
 <section>
   <mat-slide-toggle [(ngModel)]="isChecked">Tris {{sortOrder}}</mat-slide-toggle>
@@ -17,12 +18,13 @@
   </mat-dialog-actions>
 </section>
 
-<section>
-  <app-card [recipe]="recipe" (deleteRecipe)="delete($event)" *ngFor="let recipe of cookbook"></app-card>
-</section>
+  <section>
+    <app-card [recipe]="recipe" (deleteRecipe)="delete($event)" *ngFor="let recipe of cookbook"></app-card>
+  </section>
 
-<div>
-  <button (click)="showDialog()" *ngIf="dialogStatus === 'inactive'" mat-raised-button>
-    <i class="material-icons">add</i>
-  </button>
-</div>
+  <div>
+    <button (click)="showDialog()" *ngIf="dialogStatus === 'inactive'" mat-raised-button>
+      <i class="material-icons">add</i>
+    </button>
+  </div>
+</section>
