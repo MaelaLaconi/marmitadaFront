@@ -58,7 +58,7 @@ export class FormComponent implements OnInit, OnChanges {
    * @return {Array<string>} array with the ingredients values
    */
   ingredientsArray(): Array<string>{
-    const res = new Array<string>(this.steps.length);
+    const res = new Array<string>(this.ingredients.length);
     for (let i = 0; i < this.ingredients.length; i++) {
       res[i] = this.ingredients.at(i).get('ingredient')?.value;
     }
@@ -220,6 +220,7 @@ export class FormComponent implements OnInit, OnChanges {
       'preparationTime': recipe.preparationTime,
       'cookingTime': recipe.cookingTime,
     };
+    console.log(recipe1);
     this._submit$.emit(recipe1);
   }
 
