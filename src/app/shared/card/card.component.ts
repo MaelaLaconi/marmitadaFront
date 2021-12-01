@@ -16,12 +16,14 @@ export class CardComponent implements OnInit {
   constructor() {
     this._recipe = {} as Recipe;
     this._delete$ = new EventEmitter<Recipe>();
-
   }
 
   ngOnInit(): void {
   }
 
+  /**
+   * get our recipe
+   */
   get recipe(): Recipe {
     return this._recipe;
   }
@@ -42,7 +44,7 @@ export class CardComponent implements OnInit {
   }
 
   /**
-   * Function to emit event to delete current person
+   * Function to emit event to delete current recipe
    */
   delete(recipe: Recipe): void {
     this._delete$.emit(recipe);

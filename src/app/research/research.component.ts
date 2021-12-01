@@ -13,22 +13,31 @@ import {Observable} from "rxjs";
   styleUrls: ['./research.component.css']
 })
 export class ResearchComponent implements OnInit {
+  // contains all recipes fetch by name
   private _recipes: Recipe[];
+  // check if it's a recipe or not
   private _isRecipe: boolean;
+  // active or inactive
   private _dialogStatus: string;
+  // our dialog
   private _recipeDialog: MatDialogRef<DialogComponent, Recipe> | undefined;
 
   constructor(private _cookbookService: CookbookService, private _route: ActivatedRoute, private _dialog: MatDialog) {
     this._recipes = [];
     this._isRecipe = false;
     this._dialogStatus = 'inactive';
-
   }
 
+  /**
+   * get all our recipes
+   */
   get recipes(): Recipe[] {
     return this._recipes;
   }
 
+  /**
+   * init with all the recipes with the same name
+   */
   ngOnInit(): void {
     this._route.params.pipe(
       filter((params: any) => !!params.name),

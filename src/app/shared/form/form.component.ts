@@ -28,7 +28,6 @@ export class FormComponent implements OnInit, OnChanges {
   constructor(private _fb:FormBuilder) {
     this._isAddedStep= false;
     this._isAddedIngr = false;
-
     this._productForm = this._buildForm();
     this._cancel$ = new EventEmitter<void>();
     this._submit$ = new EventEmitter<Recipe>();
