@@ -51,6 +51,11 @@ mat-list-item {
   width: 700px;
 }
 
+.mat-subheader {
+  font-size: 24px;
+  color: #9c189c;
+}
+
 mat-card:hover {
   box-shadow: 0 11px 15px -7px rgba(0,0,0,.2),
   0 24px 38px 3px rgba(0,0,0,.14),
@@ -82,7 +87,7 @@ mat-card-subtitle.contact-info {
 }
 
 mat-card-title-group {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .contact-info mat-icon + a {

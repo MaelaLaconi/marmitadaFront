@@ -5,7 +5,7 @@
       <mat-card-title>
         <span><a [routerLink]="['/recipe/'+recipe.id]">{{ recipe.name }}</a></span>
       </mat-card-title>
-      <div class="gray_text">{{ recipe?.category }}</div>
+      <div class="gray_text"><a [routerLink]="['/category/'+recipe.category]">{{ recipe?.category }}</a></div>
 
       <mat-card-subtitle class="gray_text">{{ recipe.description }}</mat-card-subtitle>
 
