@@ -4,6 +4,8 @@ section {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+  background-color: #f3f3f3;
+
 }
 
 h3{
