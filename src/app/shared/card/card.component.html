@@ -29,11 +29,11 @@
     <mat-card-content>
       <div class="buttons-info">
         <button mat-button title="Delete" (click)="delete(recipe)">
-          <mat-icon>delete</mat-icon>
+          <mat-icon svgIcon="icon-delete">delete</mat-icon>
         </button>
 
         <a mat-button title="Edit" [routerLink]="['/edit', recipe?.id]">
-          <mat-icon>edit</mat-icon>
+          <mat-icon svgIcon="icon-edit">edit</mat-icon>
         </a>
       </div>
     </mat-card-content>

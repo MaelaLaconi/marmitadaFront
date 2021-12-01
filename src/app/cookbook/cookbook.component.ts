@@ -3,7 +3,7 @@ import {Recipe} from "../shared/types/recipe.type";
 import {CookbookService} from "../shared/services/cookbook.service";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../shared/dialog/dialog.component';
-import {filter, mergeMap} from "rxjs/operators";
+import {filter, map, mergeMap} from "rxjs/operators";
 import {Observable} from "rxjs";
 
 @Component({
@@ -79,6 +79,11 @@ export class CookbookComponent implements OnInit {
     this._cookbookDialog.afterClosed()
       .pipe(
         filter((recipe: Recipe | undefined) => !!recipe),
+        map( (recipe: Recipe | undefined) => {
+          // delete obsolete attribute in original object which is not required in the API
+          delete recipe?.id;
+          return recipe;
+        }),
         mergeMap((recipe: Recipe | undefined) => this._add(recipe))
       )
       .subscribe({

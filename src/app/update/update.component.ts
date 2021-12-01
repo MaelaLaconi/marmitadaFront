@@ -45,6 +45,7 @@ export class UpdateComponent implements OnInit {
           const id = recipe?.id;
           // delete obsolete attributes in original object which are not required in the API
           delete recipe?.id;
+          console.log(recipe);
 
           return { id, update: recipe };
         }),
