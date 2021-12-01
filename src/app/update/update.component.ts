@@ -16,6 +16,9 @@ export class UpdateComponent implements OnInit {
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _cookbookService: CookbookService, private _dialog: MatDialog) { }
 
+  /**
+   * init with the recipe to update (in the modal)
+   */
   ngOnInit(): void {
     this._route.params
       .pipe(
@@ -43,10 +46,8 @@ export class UpdateComponent implements OnInit {
         map((recipe: Recipe | undefined) => {
           // get recipe id
           const id = recipe?.id;
-          // delete obsolete attributes in original object which are not required in the API
+          // delete obsolete attribute in original object which are not required in the API
           delete recipe?.id;
-          console.log(recipe);
-
           return { id, update: recipe };
         }),
         mergeMap((_: { id: any, update: any }) => this._cookbookService.update(_.id, _.update))

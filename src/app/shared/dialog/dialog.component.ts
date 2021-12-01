@@ -11,6 +11,9 @@ export class DialogComponent implements OnInit {
 
   constructor(private _dialogRef: MatDialogRef<DialogComponent, Recipe>, @Optional() @Inject(MAT_DIALOG_DATA) private _recipe: Recipe) { }
 
+  /**
+   * get our recipe
+   */
   get recipe(): Recipe {
     return this._recipe;
   }

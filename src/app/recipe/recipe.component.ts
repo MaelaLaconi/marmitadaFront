@@ -11,18 +11,20 @@ import {merge} from "rxjs";
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
-
-  private _recipe: any;
+  // our recipe
+  private _recipe: Recipe;
+  // check if it's a recipe
   private _isRecipe;
   constructor(private _cookbookService: CookbookService, private _route: ActivatedRoute, private _router: Router) {
     this._recipe = {} as Recipe;
     this._isRecipe=false;
   }
 
-  get isRecipe() {
-    return this._isRecipe;
-  }
 
+  /**
+   * init with one specific recipe (by its id) if there is a param recipe/:id
+   * init with a random recipe if there is not a param recipe/
+   */
   ngOnInit(): void {
     merge(
       this._route.params.pipe(
@@ -60,6 +62,10 @@ export class RecipeComponent implements OnInit {
 
   }
 
+
+  /**
+   * get our recipe
+   */
   get recipe(): any {
     return this._recipe;
   }

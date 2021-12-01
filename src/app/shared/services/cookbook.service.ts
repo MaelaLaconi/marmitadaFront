@@ -9,8 +9,8 @@ import {defaultIfEmpty, filter, map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class CookbookService {
-
   private readonly _backendURL: any;
+  // default recipe with default field
   private readonly _defautltRecipe: Recipe;
 
   constructor(private _http: HttpClient) {
@@ -84,7 +84,7 @@ export class CookbookService {
   }
 
   /**
-   * Function to return list of recipe by category
+   * Function to return list of recipe by name
    */
   fetchByName(name: string): Observable<Recipe[]>  {
     return this._http.get<Recipe[]>(this._backendURL.allRecipeName.replace(':name', name))
@@ -106,7 +106,7 @@ export class CookbookService {
   }
 
   /**
-   * Function to return list of recipe by category
+   * Function to return list of string that contains all names
    */
   fetchAllNames(): Observable<String[]>  {
     return this._http.get<String[]>(this._backendURL.allNames)
@@ -117,7 +117,7 @@ export class CookbookService {
   }
 
   /**
-   * Function to return list of string category
+   * Function to return list of recipe sorted
    */
   fetchWithSort(methode: string): Observable<Recipe[]>  {
     return this._http.get<Recipe[]>(this._backendURL.tri.replace(':sortMethod', methode))
@@ -127,6 +127,9 @@ export class CookbookService {
       );
   }
 
+  /**
+   * get our default recipe
+   */
   get defautltRecipe(): Recipe {
     return this._defautltRecipe;
   }
@@ -163,7 +166,7 @@ export class CookbookService {
   }
 
   /**
-   * Function to return one random person from people list
+   * Function to return one random recipe from recipe list
    */
   fetchRandom(): Observable<Recipe> {
     return this._http.get<Recipe>(this._backendURL.randomRecipe)
