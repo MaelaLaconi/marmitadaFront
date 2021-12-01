@@ -10,6 +10,7 @@ import {ResearchComponent} from "./research/research.component";
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomepageComponent },
+  { path: 'recipe/:id', component: RecipeComponent },
   { path: 'recipe', component: RecipeComponent },
   { path: 'cookbook', component: CookbookComponent },
   { path: 'edit/:id', component: UpdateComponent },
