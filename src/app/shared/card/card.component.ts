@@ -10,15 +10,24 @@ export class CardComponent implements OnInit {
   // private property to store recipe value
   private _recipe: Recipe;
 
+  private _isCookbook : boolean;
   // private property to store delete$ value
   private readonly _delete$: EventEmitter<Recipe>;
 
   constructor() {
     this._recipe = {} as Recipe;
     this._delete$ = new EventEmitter<Recipe>();
+    this._isCookbook = false;
   }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * true if it's a cookbook display, false otherwise
+   */
+  get isCookbook(): boolean {
+    return this._isCookbook;
   }
 
   /**
@@ -26,6 +35,15 @@ export class CardComponent implements OnInit {
    */
   get recipe(): Recipe {
     return this._recipe;
+  }
+
+  /**
+   * set the value of isCookbook
+   * @param value
+   */
+  @Input()
+  set isCookbook(value: boolean) {
+    this._isCookbook = value;
   }
 
   /**

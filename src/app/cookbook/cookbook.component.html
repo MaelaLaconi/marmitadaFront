@@ -18,9 +18,9 @@
     </mat-dialog-actions>
   </section>
 
-  <section>
-    <app-card [recipe]="recipe" (deleteRecipe)="delete($event)" *ngFor="let recipe of cookbook"></app-card>
-  </section>
+  <mat-grid-list cols="1">
+    <app-card [recipe]="recipe" [isCookbook]="true" (deleteRecipe)="delete($event)" *ngFor="let recipe of cookbook"></app-card>
+  </mat-grid-list>
 
   <div>
     <button (click)="showDialog()" *ngIf="dialogStatus === 'inactive'" mat-raised-button>
