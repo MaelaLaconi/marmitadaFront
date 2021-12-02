@@ -220,7 +220,6 @@ export class FormComponent implements OnInit, OnChanges {
       'preparationTime': recipe.preparationTime,
       'cookingTime': recipe.cookingTime,
     };
-    console.log(recipe1);
     this._submit$.emit(recipe1);
   }
 
