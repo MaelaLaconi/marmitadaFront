@@ -1,27 +1,30 @@
 # MarmitadaFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
+Ce projet a été géneré avec [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9
+et nécessite NodeJs v16.x.
 
-## Development server
+# Clone
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+``` $ git clone https://github.com/MaelaLaconi/marmitadaFront.git ```
 
-## Code scaffolding
+``` $ yarn global add @angular/cli ```
+# Installer les dépendances
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Rentrer dans le dossier marmitadaFront.
+``` cd marmitadaFront ```
+Pour utiliser Yarn comme package manager :
 
-## Build
+```$ ng config --global cli.packageManager yarn```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Installer les dépendances du projet :
 
-## Running unit tests
+```$yarn install```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Ne pas oublier de mettre en place le back : `https://github.com/MaelaLaconi/marmitadaBack.git`
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Lancement
 
-## Further help
+```$ ng serve```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Une fois lancé, se rendre sur `http://localhost:4200/`
