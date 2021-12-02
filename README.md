@@ -1,7 +1,7 @@
 # MarmitadaFront
 
 Ce projet a été géneré avec [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9
-et nécessite NodeJs v16.x.
+et nécessite [NodeJs v16.x](https://nodejs.org/en/).
 
 # Clone
 
