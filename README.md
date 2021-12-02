@@ -1,4 +1,6 @@
-# MarmitadaFront
+# Le site Marmitada
+
+Site Marmitada, réalisé par Maéla Laconi et Mathieu Tabary.
 
 Ce projet a été géneré avec [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9
 et nécessite [NodeJs v16.x](https://nodejs.org/en/).
