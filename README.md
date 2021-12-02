@@ -11,7 +11,9 @@ et nécessite [NodeJs v16.x](https://nodejs.org/en/).
 # Installer les dépendances
 
 Rentrer dans le dossier marmitadaFront.
+
 ``` cd marmitadaFront ```
+
 Pour utiliser Yarn comme package manager :
 
 ```$ ng config --global cli.packageManager yarn```
