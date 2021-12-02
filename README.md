@@ -32,6 +32,6 @@ Ne pas oublier de mettre en place le back : `https://github.com/MaelaLaconi/marm
 
 # Lancement
 
-```ng serve```
+```yarn run start```
 
 Une fois lancé, se rendre sur `http://localhost:4200/`
