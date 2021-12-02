@@ -7,9 +7,12 @@ et nécessite [NodeJs v16.x](https://nodejs.org/en/).
 
 # Clone
 
-``` $ git clone https://github.com/MaelaLaconi/marmitadaFront.git ```
+``` 
+git clone https://github.com/MaelaLaconi/marmitadaFront.git 
 
-``` $ yarn global add @angular/cli ```
+yarn global add @angular/cli
+  ```
+ 
 # Installer les dépendances
 
 Rentrer dans le dossier marmitadaFront.
@@ -18,17 +21,17 @@ Rentrer dans le dossier marmitadaFront.
 
 Pour utiliser Yarn comme package manager :
 
-```$ ng config --global cli.packageManager yarn```
+```ng config --global cli.packageManager yarn```
 
 Installer les dépendances du projet :
 
-```$yarn install```
+```yarn install```
 
 Ne pas oublier de mettre en place le back : `https://github.com/MaelaLaconi/marmitadaBack.git`
 
 
 # Lancement
 
-```$ ng serve```
+```ng serve```
 
 Une fois lancé, se rendre sur `http://localhost:4200/`
